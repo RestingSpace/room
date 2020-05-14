@@ -6,10 +6,11 @@ import Rooms from './pages/Rooms';
 import SingleRoom from './pages/SingleRoom';
 import Error from './pages/Error';
 import ReserveInfo from './pages/ReserveInfo';
-
+import Login from './pages/Login';
 import {Route, Switch} from "react-router-dom"; 
 
 import Navbar from "./components/Navbar";
+
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
       <Route exact path="/rooms/" component={Rooms} />
       <Route exact path="/rooms/:slug" component={SingleRoom} />
       <Route exact path="/reserve" component={ReserveInfo} />
+      <Route exact path="/login" component={Login} />
       <Route component={Error} />
     </Switch>
   </>
