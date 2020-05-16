@@ -1,6 +1,5 @@
-<<<<<<< HEAD
 
-import logo from '../images/icons8-room-96.png';
+import logo from '../images/icons8-room-64.png';
 import {FaAlignRight} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
 import React from 'react'

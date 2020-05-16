@@ -4,12 +4,13 @@
   box-sizing: border-box;
 }
 :root {
-  --primaryColor: #af9a7d;
+  --primaryColor: #6d675f;
   --mainWhite: #fff;
   --offWhite: #f7f7f7;
   --mainBlack: #222;
   --mainGrey: #ececec;
   --darkGrey: #cfcfcf;
+  --restingBlue: #bbb7f7;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
   --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
@@ -233,7 +234,8 @@ h6 {
   padding: 5rem 0;
 }
 .services {
-  background: var(--darkGrey);
+  margin-top: 3px;
+  background: var(--restingBlue);
   text-align: center;
 }
 .services-center {
@@ -247,15 +249,18 @@ h6 {
 .service span {
   display: inline-block;
   color: var(--primaryColor);
-  font-size: 2.5rem;
+  font-size: 3.5rem;
   margin-bottom: 1.5rem;
 }
 .services h6 {
   letter-spacing: var(--mainSpacing);
+  text-transform: capitalize;
 }
+
 .services p {
   width: 80%;
   margin: 0 auto;
+  
 }
 @media screen and (min-width: 992px) {
   .services-center {
