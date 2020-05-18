@@ -158,10 +158,10 @@ h6 {
 /* end of navbar */
 /* Hero */
 .defaultHero,
-.roomsHero img{
+.roomsHero {
   min-height: calc(100vh - 66px);
-  
   background: url("./images/eset-office-krakow-14.jpg") center/cover no-repeat;
+  display: flex;
   align-items: center;
   justify-content: center;
 }
