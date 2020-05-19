@@ -2,7 +2,8 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 
 ## Before you start
 npm install react-router-dom<br />
-npm install @syncfusion/ej2-react-schedule -- save
+npm install @syncfusion/ej2-react-schedule -- save<br/>
+npm install @syncfusion/ej2-react-buttons
 ## Available Scripts
 
 In the project directory, you can run:
