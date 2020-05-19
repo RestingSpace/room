@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import defaultBcg from '../images/meditation-room.jpg';
 import Calendar from "../components/Calendar";
+import Navbar from "../components/Navbar"
 //import Hero from '../components/Hero';
 //import Banner from '../Components/Banner';
 //import {Link} from 'react-router-dom';
@@ -24,7 +25,7 @@ export default class SingleRoom extends Component {
 
         return (
             <>
-
+                <Navbar />
                 <section className="single-room">
                     <div className = "single-room-images"><img src={defaultBcg} alt="Room"></img></div>
 
@@ -50,7 +51,7 @@ export default class SingleRoom extends Component {
                     </div>
                 </section>
                 <section className="room-extras">
-                    <h6>Reservation </h6>
+                    <h3>Reservation </h3>
                     <div>
                         <Calendar />
                     </div>
