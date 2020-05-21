@@ -4,17 +4,17 @@
   box-sizing: border-box;
 }
 :root {
-  --primaryColor: #6d675f;
+  --primaryColor: #7238df;
   --mainWhite: #fff;
   --offWhite: #f7f7f7;
   --mainBlack: #222;
   --mainGrey: #ececec;
   --darkGrey: #cfcfcf;
-  --restingBlue: #efe9fa;
+  --restingBlue: #f1eafd;
   --mainTransition: all 0.3s linear;
   --mainSpacing: 3px;
-  --lightShadow: 2px 5px 3px 0px rgba(0, 0, 0, 0.5);
-  --darkShadow: 4px 10px 5px 0px rgba(0, 0, 0, 0.5);
+  --lightShadow: 2px 2px 3px 0px rgba(0, 0, 0, 0.5);
+  --darkShadow: 3px 6px 3px 0px rgba(0, 0, 0, 0.5);
 }
 /* globals */
 body {
@@ -68,7 +68,7 @@ h6 {
 }
 .btn-primary:hover {
   background: transparent;
-  color: var(--primaryColor);
+  color: var(--restingBlue);
 }
 .loading {
   text-transform: capitalize;
@@ -356,7 +356,7 @@ h6 {
   transform: translate(-50%, -50%) scale(1);
 }
 .room-info {
-  background: var(--darkGrey);
+  background: var(--restingBlue);
   text-transform: capitalize;
   padding: 0.5rem 0;
   text-align: center;
