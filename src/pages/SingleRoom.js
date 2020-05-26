@@ -85,7 +85,7 @@ export default class SingleRoom extends Component {
                         })}
                     </ul>
                 </section>
-                <section>
+                <section className="room-extras">
                     <h3>Reservation </h3>
                     <div>
                         <Calendar/>
