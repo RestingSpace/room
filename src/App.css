@@ -523,20 +523,47 @@ h6 {
     text-align: center;
     text-transform: capitalize;
     letter-spacing: var(--mainSpacing);
+    overflow: hidden;
 }
 
 .login input{
-  height: 1.3rem;
+  height: 2rem;
   width: 15rem;
+  border-radius: 0.8rem;
+  padding: 0.5rem;
 }
 
-.login button{
-  background-color: var(--primaryColor);
-  color: white;
-  padding: 5px 3px;
-  text-align: left;
-  text-decoration: none;
+ .login button{
+  height: 2rem;
+  width: 15rem;
   display: inline-block;
-  font-size: 14px;
+ 
+  letter-spacing: var(--mainSpacing);
+  color: var(--mainBlack);
+  background:var(--primaryColor);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primaryColor);
+  margin:0.5rem;
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+} 
+.login button primary{
+  background: transparent;
+  color: var(--restingBlue);
+}
+.login button:hover{
+  background: transparent;
+  color: var(--restingBlue);
+}
+
+ 
+
+.login reminder{
+  text-align: left;
+  font-size: 3px;
+  color: var(--mainWhite);
+  text-transform: lowercase;
 }
 /* end of rooms fitler*/
+
