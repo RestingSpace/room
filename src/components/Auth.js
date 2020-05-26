@@ -1,10 +1,14 @@
 import React, {Component} from 'react';
 
-class Auth extends Component {
-    constructor() {
-        super();
+class Auth extends Component{
+
+    constructor(props) {
+        super(props);
+        console.log(props.isRegister)
         this.state={
-            isRegister:false
+            isRegister:this.props.isRegister,
+            email:"",
+            password:""
         }
     }
     login(){
@@ -41,68 +45,89 @@ class Auth extends Component {
         //     })
         // })
     }
+    
+
     render() {
+        
+        
         return (
             <div>
                 {
                     !this.state.isRegister?
                     <div className="login">
-                        <input type="text" placeholder="email"
+                        {this.state.email.length === 0 ? null : <div className='reminder'>email</div>}
+                        <input type="text" placeholder=" email"
                                onChange={(e) => {
                                    this.setState({email: e.target.value})
-                               }}
-                        /> <br/><br/>
-                        <input type="text" placeholder="password"
+                               }}>
+
+                        
+                        </input>
+                        <br/><br/>
+                        {this.state.password.length === 0 ? null : <div className='reminder'>password</div>}
+                        <input type="text" placeholder=" password"
                                onChange={(e) => {
                                    this.setState({password: e.target.value})
                                }}
                         /> <br/><br/>
-                        <button onClick={() => this.login()}>Login</button>
-                        <span>&emsp;&emsp;&emsp;</span>
-                        <button onClick={() => this.setState({isRegister: true})}>New User? Register</button>
+                        <div>
+                            <button className='primary' onClick={() => this.login()}>Login</button>
+                        </div>
+                        
+                        <div>
+                            <button onClick={() => this.setState({isRegister: true})}>New User? Register</button>
+
+                        </div>
+                        
                     </div>
+
                         :
+
                         <div className="login">
-                            <input type="text" placeholder="username"
+                            <input type="text" placeholder=" username"
                                    onChange={(e) => {
                                        this.setState({username: e.target.value})
                                    }}
                             /> <br/><br/>
-                            <input type="text" placeholder="email"
+                            <input type="text" placeholder=" email"
                                    onChange={(e) => {
                                        this.setState({email: e.target.value})
                                    }}
                             /> <br/><br/>
-                            <input type="text" placeholder="password"
+                            <input type="text" placeholder=" password"
                                    onChange={(e) => {
                                        this.setState({password: e.target.value})
                                    }}
                             /> <br/><br/>
 
-                            <input type="text" placeholder="first name"
+                            <input type="text" placeholder=" first name"
                                    onChange={(e) => {
                                        this.setState({first_name: e.target.value})
                                    }}
                             /> <br/><br/>
-                            <input type="text" placeholder="last name"
+                            <input type="text" placeholder=" last name"
                                    onChange={(e) => {
                                        this.setState({last_name: e.target.value})
                                    }}
                             /> <br/><br/>
-                            <input type="text" placeholder="address"
+                            <input type="text" placeholder=" address"
                                    onChange={(e) => {
                                        this.setState({address: e.target.value})
                                    }}
                             /> <br/><br/>
-                            <input type="text" placeholder="phone number"
+                            <input type="text" placeholder=" phone number"
                                    onChange={(e) => {
                                        this.setState({phone: e.target.value})
                                    }}
                             /> <br/><br/>
-
-                            <button onClick={() => this.register()}>Register</button>
-                            <span>&emsp;&emsp;&emsp;&emsp;</span>
-                            <button onClick={() => this.setState({isRegister: false})}>Back to Login</button>
+                            <div>  
+                                <button className ='primary' onClick={() => this.register()}>Register</button>
+                            </div>
+                            
+                            <div>
+                                <button onClick={() => this.setState({isRegister: false})}>Back to Login</button>
+                            </div>
+                            
                         </div>
                 }
             </div>

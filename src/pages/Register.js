@@ -1,7 +1,7 @@
 import React from 'react'
 import Hero from '../components/Hero'
 import Auth from '../components/Auth'
-const Login = () => {
+const Register = () => {
     return (
         <>
 
@@ -9,10 +9,10 @@ const Login = () => {
 
         </div>
         <Hero>
-            <Auth isRegister={false}/>
+            <Auth isRegister={true}/>
         </Hero>
         </>
         
     )
 }
-export default Login;
+export default Register;
