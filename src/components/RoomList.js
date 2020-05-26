@@ -11,12 +11,11 @@ export default function RoomsList({rooms}) {
             </div>
         )
     }
-    console.log(rooms)
     roomsL = rooms.map(room => {
         
         return <Room key={room.id} room={room}></Room>
     })
-    console.log(roomsL)
+    
 
     return (
         
