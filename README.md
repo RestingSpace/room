@@ -3,7 +3,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 ## Before you start
 npm install react-router-dom<br />
 npm install @syncfusion/ej2-react-schedule -- save<br/>
-npm install @syncfusion/ej2-react-buttons
+npm install @syncfusion/ej2-react-buttons<br />
 npm install - -save styled-components
 ## Available Scripts
 
