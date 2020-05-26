@@ -515,4 +515,28 @@ h6 {
     max-width: 1170px;
   }
 }
+.login {
+    display: inline-block;
+    background: rgba(0, 0, 0, 0.5);
+    color: var(--mainWhite);
+    padding: 2rem 15rem;
+    text-align: center;
+    text-transform: capitalize;
+    letter-spacing: var(--mainSpacing);
+}
+
+.login input{
+  height: 1.3rem;
+  width: 15rem;
+}
+
+.login button{
+  background-color: var(--primaryColor);
+  color: white;
+  padding: 5px 3px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 14px;
+}
 /* end of rooms fitler*/

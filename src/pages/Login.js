@@ -1,13 +1,16 @@
 import React from 'react'
 import Hero from '../components/Hero'
+import Auth from '../components/Auth'
 const Login = () => {
     return (
         <>
-        
+
         <div>
-            Login
+
         </div>
-        <Hero></Hero>
+        <Hero>
+            <Auth />
+        </Hero>
         </>
         
     )
