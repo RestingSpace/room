@@ -4,6 +4,7 @@ This project was bootstrapped with [Create React App](https://github.com/faceboo
 npm install react-router-dom<br />
 npm install @syncfusion/ej2-react-schedule -- save<br/>
 npm install @syncfusion/ej2-react-buttons
+npm install - -save styled-components
 ## Available Scripts
 
 In the project directory, you can run:
