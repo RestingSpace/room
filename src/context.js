@@ -47,7 +47,6 @@ class RoomProvider extends Component {
             
             return room;
         });
-        console.log(tempItems);
         return tempItems
     }
 
@@ -59,8 +58,8 @@ class RoomProvider extends Component {
 
     handleChange = event => {
         const target = event.target;
-        const value = event.type === 'checkbox' ? target.checked : target.value;
-        const name = event.target.name;
+        const value = target.type === 'checkbox' ? target.checked : target.value;
+        const name = target.name;
         this.setState({[name]:value}, this.filterRooms);
 
     };
@@ -79,7 +78,7 @@ class RoomProvider extends Component {
 
         // filter by type
         if (type !== 'all') {
-            tempRooms = tempRooms.filter(room => room.type === type)
+            tempRooms = tempRooms.filter(room => room.type === type);
         }
 
         // filter by capacity
@@ -90,10 +89,23 @@ class RoomProvider extends Component {
         // filter by price
         tempRooms = tempRooms.filter(room => room.price <= price);
 
-        // change set state
+        // filter by size
+        tempRooms = tempRooms.filter(room => room.size >= minSize && room.size <= maxSize)
+
+        // filter by food
+        if (food) {
+            tempRooms = tempRooms.filter(room => room.food === true)
+        }
+
+        //filter by pets
+        if (pets) {
+            tempRooms = tempRooms.filter(room => room.pets === true)
+        }
+
+        // change state
         this.setState({
             sortedRooms:tempRooms
-        })
+        });
     };
 
     render() {
@@ -112,6 +124,8 @@ class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
+export {RoomProvider, RoomConsumer, RoomContext};
+
 export function withRoomConsumer(Component) {
     return function ConsumerWrapper(props) {
         return (
@@ -123,5 +137,3 @@ export function withRoomConsumer(Component) {
 }
 
 
-
-export {RoomProvider, RoomConsumer, RoomContext};
