@@ -5,10 +5,10 @@ import Title from '../components/Titles'
 
 // get all unique values
 const getUnique = (items, value) => {
-    return [...new Set(items.map(item => item[value]))]
+    return [...new Set(items.map(item => item[value]))];
 }
 
-export default function RoomFilter({rooms}) {
+const RoomsFilter = ({rooms}) => {
     const context = useContext(RoomContext);
     const {
         handleChange, type, capacity, price, minPrice, maxPrice, minSize, maxSize, food, pets
@@ -28,7 +28,7 @@ export default function RoomFilter({rooms}) {
     return <option key={index} value={item}>{item}</option>
     })
 
-    return <section className="filter-container">
+    return (<section className="filter-container">
         <Title title="search rooms" />
         <form className="filter-form">
             {/* select type */}
@@ -58,8 +58,32 @@ export default function RoomFilter({rooms}) {
                 </div>
             {/* end room price */}
 
-            
-        </form>
-    </section>;
+            {/* size */}
+            <div className="form-group">
+                <label htmlFor="size">room size</label>
+                <div className="size-inputs">
+                    <input type="number" name="minSize" id="size" value={minSize} onChange={handleChange} className="size-input"/>
+                    <input type="number" name="maxSize" id="size" value={maxSize} onChange={handleChange} className="size-input"/>
+                </div>
+            </div>
+            {/* end size */}
 
-}
+            {/* extras */}
+            <div className="form-group">
+                <div className="single-extra">
+                    <input type="checkbox" name="food" id="food" checked={food} onChange={handleChange}/>
+                    <label htmlFor="breakfast">food</label>
+                </div>
+            
+                <div className="single-extra">
+                    <input type="checkbox" name="pets" id="pets" checked={pets} onChange={handleChange}/>
+                    <label htmlFor="pets">pets</label>
+                </div>
+            </div>
+            {/* end of extras */}
+        </form>
+    </section>);
+
+};
+
+export default RoomsFilter;
