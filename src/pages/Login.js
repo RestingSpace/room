@@ -32,16 +32,14 @@ class Login extends Component {
             const requestOptions = {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
-                // credentials: "include",
+                credentials: "include",
                 body: JSON.stringify(this.state),
-                "Access-Control-Allow-Origin": "*"
             };
             fetch(loginURL, requestOptions)
                 .then(res => {
                     if (res.status === 200) { // success Log in
+                        document.cookie = res.headers.get('Authorization');
                         this.props.history.push("/");
-                        console.log(res);
-                        return res;
                     } else {
                         const error = new Error(res.error);
                         throw error;

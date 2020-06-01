@@ -32,20 +32,17 @@ class Register extends Component {
                 const signupURL = "http://localhost:8080/signup";
                 const requestOptions = {
                     method: "POST",
-                    headers: { "Content-Type": "application/json" },
-                    // credentials: "include",
-                    body: JSON.stringify({
-                        username: this.state.username,
-                        password: this.state.password,
-
-                    }),
-                    "Access-Control-Allow-Origin": "*"
+                    credentials: "include",
+                    headers: { "Content-Type": "application/json",
+                                "Authorization": document.cookie
+                    },
+                    body: JSON.stringify(this.state),
                 };
                 fetch(signupURL, requestOptions)
                     .then(res => {
                         if (res.redirected === true && res.url === signupURL) {
                             this._availableUserid = false;
-                            alert("This userid has been used, please enter a new userID!!");
+                            alert("This username has been used, please enter a new username!!");
                         } else if (res.status == 201) {
                         } else {
                             const error = new Error(res.error);
