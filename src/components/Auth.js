@@ -4,9 +4,9 @@ class Auth extends Component{
 
     constructor(props) {
         super(props);
-        console.log(props.isRegister)
         this.state={
             isRegister:this.props.isRegister,
+            username: "",
             email:"",
             password:""
         }
@@ -30,20 +30,24 @@ class Auth extends Component{
     }
     register(){
         alert("register called");
-        // console.warn("state", this.state);
-        // fetch('http://127.0.0:8000/api/register', {
-        //     method: "POST",
-        //     headers:{
-        //         "Accept":"application/json",
-        //         "Content-Type":"application/json"
-        //     },
-        //     body:JSON.stringify(this.state)
-        // }).then((result)=>{
-        //     result.json().then((resp)=>{
-        //         console.log(resp);
-        //         localStorage.setItem("auth", JSON.stringify(resp.success.token));
-        //     })
-        // })
+        console.warn("state", this.state);
+        const signupURL = "http://localhost:8080/signup";
+        const requestOptions = {
+                    method: "POST",
+                    headers: { "Content-Type": "application/json" },
+                    // credentials: "include",
+                    body: JSON.stringify({
+                        username: this.state.username,
+                        password: this.state.password,
+
+                    }),
+                    "Access-Control-Allow-Origin": "*"
+                };
+        fetch(signupURL, requestOptions).then((result)=>{
+            result.json().then((resp)=>{
+                localStorage.setItem("auth", JSON.stringify(resp.success.token));
+            })
+        })
     }
 
 
