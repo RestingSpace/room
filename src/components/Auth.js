@@ -11,6 +11,7 @@ class Auth extends Component{
             password:""
         }
     }
+
     login(){
         alert("login called");
         // console.warn("state", this.state);
@@ -27,7 +28,47 @@ class Auth extends Component{
         //         localStorage.setItem("auth", JSON.stringify(resp.success.token));
         //     })
         // })
+        // console.warn("state", this.state);
+
+        // fetch('http://localhost:8080/login', {
+        //     method: "POST",
+        //     headers:{
+        //         "Accept":"application/json",
+        //         "Content-Type":"application/json"
+        //     },
+        //     body:JSON.stringify(this.state)
+        // }).then((result)=>{
+        //     result.json().then((resp)=>{
+        //         console.log(resp);
+        //         localStorage.setItem("auth", JSON.stringify(resp.success.token));
+        //     })
+        // })
+
+        async function postData(url = '', data = {}) {
+            // Default options are marked with *
+            const response = await fetch(url, {
+              method: 'POST', // *GET, POST, PUT, DELETE, etc.
+              mode: 'no-cors', // no-cors, *cors, same-origin
+              //cache: 'no-cache', // *default, no-cache, reload, force-cache, only-if-cached
+              //credentials: 'same-origin', // include, *same-origin, omit
+              headers: {
+                'Content-Type': 'application/json'
+              },
+              //redirect: 'follow', // manual, *follow, error
+              //referrerPolicy: 'no-referrer', // no-referrer, *no-referrer-when-downgrade, origin, origin-when-cross-origin, same-origin, strict-origin, strict-origin-when-cross-origin, unsafe-url
+              body: JSON.stringify(data) // body data type must match "Content-Type" header
+            });
+            return response; // parses JSON response into native JavaScript objects
+            //return response.json();
+          }
+          
+          postData('http://localhost:8080/login', { "username":"wangA",
+          "password":"1234" })
+            .then(data => {
+              console.log(data); // JSON data parsed by `response.json()` call
+            });
     }
+
     register(){
         alert("register called");
         // console.warn("state", this.state);
