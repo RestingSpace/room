@@ -21,7 +21,6 @@
   <component name="ChangeListManager">
     <list default="true" id="e5910670-26e1-4781-b923-f99093488d8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/Login.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Login.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/Register.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/Register.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -108,7 +107,8 @@
       <workItem from="1590523812247" duration="222000" />
       <workItem from="1590547630204" duration="1222000" />
       <workItem from="1590551203420" duration="2938000" />
-      <workItem from="1590671807059" duration="22585000" />
+      <workItem from="1590671807059" duration="22642000" />
+      <workItem from="1591113664265" duration="400000" />
     </task>
     <task id="LOCAL-00001" summary="May 30 by Yucaho Zhang.">
       <created>1590884284086</created>
@@ -117,7 +117,14 @@
       <option name="project" value="LOCAL" />
       <updated>1590884284086</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="June 1 by Yucaho Zhang.">
+      <created>1591054659472</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1591054659472</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -137,40 +144,47 @@
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="May 30 by Yucaho Zhang." />
-    <option name="LAST_COMMIT_MESSAGE" value="May 30 by Yucaho Zhang." />
+    <MESSAGE value="June 1 by Yucaho Zhang." />
+    <option name="LAST_COMMIT_MESSAGE" value="June 1 by Yucaho Zhang." />
   </component>
   <component name="WindowStateProjectService">
     <state x="1245" y="1848" key="#ESLint" timestamp="1590782519913">
       <screen x="701" y="1440" width="1366" height="1024" />
     </state>
     <state x="1245" y="1848" key="#ESLint/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@701.1440.1366.1024" timestamp="1590782519913" />
-    <state x="853" y="295" key="CommitChangelistDialog2" timestamp="1590884283900">
+    <state x="853" y="295" key="CommitChangelistDialog2" timestamp="1591054659402">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="853" y="295" key="CommitChangelistDialog2/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590884283900" />
-    <state width="1324" height="286" key="GridCell.Tab.0.bottom" timestamp="1590782752833">
-      <screen x="701" y="1440" width="1366" height="1024" />
+    <state x="853" y="295" key="CommitChangelistDialog2/604.1463.1366.1001/0.0.2560.1440@0.0.2560.1440" timestamp="1591054659402" />
+    <state width="1324" height="286" key="GridCell.Tab.0.bottom" timestamp="1591054705085">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1080" height="424" key="GridCell.Tab.0.bottom/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590671909342" />
     <state width="1324" height="286" key="GridCell.Tab.0.bottom/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@701.1440.1366.1024" timestamp="1590782752833" />
-    <state width="1324" height="286" key="GridCell.Tab.0.center" timestamp="1590782752831">
-      <screen x="701" y="1440" width="1366" height="1024" />
+    <state width="1324" height="286" key="GridCell.Tab.0.bottom/604.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1591054705085" />
+    <state width="1324" height="286" key="GridCell.Tab.0.center" timestamp="1591054705084">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1080" height="424" key="GridCell.Tab.0.center/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590671909340" />
     <state width="1324" height="286" key="GridCell.Tab.0.center/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@701.1440.1366.1024" timestamp="1590782752831" />
-    <state width="1324" height="286" key="GridCell.Tab.0.left" timestamp="1590782752830">
-      <screen x="701" y="1440" width="1366" height="1024" />
+    <state width="1324" height="286" key="GridCell.Tab.0.center/604.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1591054705084" />
+    <state width="1324" height="286" key="GridCell.Tab.0.left" timestamp="1591054705084">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1080" height="424" key="GridCell.Tab.0.left/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590671909338" />
     <state width="1324" height="286" key="GridCell.Tab.0.left/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@701.1440.1366.1024" timestamp="1590782752830" />
-    <state width="1324" height="286" key="GridCell.Tab.0.right" timestamp="1590782752832">
-      <screen x="701" y="1440" width="1366" height="1024" />
+    <state width="1324" height="286" key="GridCell.Tab.0.left/604.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1591054705084" />
+    <state width="1324" height="286" key="GridCell.Tab.0.right" timestamp="1591054705085">
+      <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state width="1080" height="424" key="GridCell.Tab.0.right/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590671909341" />
     <state width="1324" height="286" key="GridCell.Tab.0.right/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@701.1440.1366.1024" timestamp="1590782752832" />
-    <state x="880" y="461" key="Vcs.Push.Dialog.v2" timestamp="1590884299265">
+    <state width="1324" height="286" key="GridCell.Tab.0.right/604.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1591054705085" />
+    <state x="880" y="461" key="Vcs.Push.Dialog.v2" timestamp="1591054697123">
       <screen x="0" y="0" width="2560" height="1440" />
     </state>
     <state x="880" y="461" key="Vcs.Push.Dialog.v2/2560.-263.1296.2304/701.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1590884299265" />
+    <state x="880" y="461" key="Vcs.Push.Dialog.v2/604.1440.1366.1024/0.0.2560.1440@0.0.2560.1440" timestamp="1591054697123" />
   </component>
 </project>

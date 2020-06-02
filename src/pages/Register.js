@@ -32,7 +32,6 @@ class Register extends Component {
                 const signupURL = "http://localhost:8080/signup";
                 const requestOptions = {
                     method: "POST",
-                    credentials: "include",
                     headers: { "Content-Type": "application/json",
                                 "Authorization": document.cookie
                     },
