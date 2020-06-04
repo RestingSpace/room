@@ -6,7 +6,7 @@ class Auth extends Component{
         super(props);
         this.state={
             isRegister:this.props.isRegister,
-            username: "",
+            username:"",
             email:"",
             password:""
         }
