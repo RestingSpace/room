@@ -5,7 +5,7 @@
   "dependencies": {
     "-": "0.0.1",
     "@syncfusion/ej2-react-buttons": "^18.1.52",
-    "@syncfusion/ej2-react-schedule": "^18.1.52",
+    "@syncfusion/ej2-react-schedule": "^18.1.55",
     "@testing-library/jest-dom": "^4.2.4",
     "@testing-library/react": "^9.5.0",
     "@testing-library/user-event": "^7.2.1",

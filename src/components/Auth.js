@@ -43,11 +43,21 @@ class Auth extends Component{
                     }),
                     "Access-Control-Allow-Origin": "*"
                 };
-        fetch(signupURL, requestOptions).then((result)=>{
-            result.json().then((resp)=>{
-                localStorage.setItem("auth", JSON.stringify(resp.success.token));
-            })
-        })
+                fetch(signupURL, requestOptions)
+                .then(res => {
+                    if (res.status == 226){
+                        alert("This username already exists.")
+                    }
+                    if (res.status === 200) { // success Log in
+                        this.setState({isRegister: false});
+                    } else {
+                        console.log(res.text());
+                    }
+                })
+                .catch(err => {
+                    console.error(err);
+                    alert("Error logging in please try again");
+                });
     }
 
 
