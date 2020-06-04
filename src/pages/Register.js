@@ -39,17 +39,18 @@ class Register extends Component {
                 };
                 fetch(signupURL, requestOptions)
                     .then(res => {
-                        if (res.redirected === true && res.url === signupURL) {
-                            this._availableUserid = false;
-                            alert("This username has been used, please enter a new username!!");
-                        } else if (res.status == 201) {
+                        if (res.status == 226){
+                            alert("This username already exists.")
+                        }
+                        if (res.status === 200) { // success Log in
+                            this.props.history.push("/login");
                         } else {
-                            const error = new Error(res.error);
-                            throw error;
+                            console.log(res.text());
                         }
                     })
-                    .then(userInfo => {
-                        console.log("Success", userInfo);
+                    .catch(err => {
+                        console.error(err);
+                        alert("Error logging in please try again");
                     });
 
         }
@@ -59,12 +60,12 @@ class Register extends Component {
         return (
             <div>
                 <div className="intro">
-                    <h5>Join Us</h5>
-                    <p className="subtitle">Sharing your colorful life!!</p>
+                    <br/>
+                    <p className="subtitle">Sign up</p>
                 </div>
                 <form className="form" id="sign-up-form" onSubmit={this.handleSubmit}>
                     <p>
-                        <label>User ID:</label>
+                        <label>Username:</label>
                         <input
                             type="text"
                             className="w3-input w3-border w3-round-large"

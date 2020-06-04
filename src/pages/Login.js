@@ -61,8 +61,8 @@ class Login extends Component {
         return (
             <div>
                 <div className="intro">
-                    <h5>Log into your account you created before!!</h5>
-                    <p className="subtitle">Sharing your colorful life!!</p>
+                    <br/>
+                    <p className="subtitle">Log In</p>
                 </div>
                 <form className="form" id="log-in-form" onSubmit={this.submitClick}>
                     <p>
@@ -86,7 +86,7 @@ class Login extends Component {
                         />
                     </p>
                     <button type="submit"  value="log in">
-                        Submit
+                        Login
                     </button>
                 </form>
             </div>
