@@ -8,7 +8,8 @@ class Auth extends Component{
             isRegister:this.props.isRegister,
             username:"",
             email:"",
-            password:""
+            password:"",
+            confirmed_password: ''
         }
     }
     login(){
@@ -45,6 +46,7 @@ class Auth extends Component{
                 };
                 fetch(signupURL, requestOptions)
                 .then(res => {
+                    console.log(res.status);
                     if (res.status == 226){
                         alert("This username already exists.")
                     }
@@ -101,6 +103,7 @@ class Auth extends Component{
                             <h4>Basic Information </h4>
                             <input className = "login_input" type="text" placeholder=" first name"
                                    onChange={(e) => {
+                                       console.log("change");
                                        this.setState({first_name: e.target.value})
                                    }}
                             />
@@ -126,7 +129,11 @@ class Auth extends Component{
                             /> <br/><br/>
                             <input className = "register_input" type="text" placeholder=" confirm password"
                                    onChange={(e) => {
-                                       this.setState({c_password: e.target.value})
+                                       
+                                       if (e.target.value !== this.state.password) {
+                                        
+                                       }
+                                       this.setState({confirmed_password: e.target.value})
                                    }}
                             /> <br/><br/>
 
@@ -157,7 +164,12 @@ class Auth extends Component{
                                    }}
                             /> <br/><br/>
                             <div>
-                                <button className ='primary' onClick={() => this.register()}>Register</button>
+                                <button className ='primary' onClick={() => {
+                                    const { password, confirmed_password} = this.state;
+                                    if (password !== confirmed_password) {
+                                        alert("Passwords don't match");
+                                    }
+                                    this.register()}}>Register</button>
                             </div>
 
                             <div>

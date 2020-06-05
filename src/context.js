@@ -6,8 +6,8 @@ const RoomContext = React.createContext();
 
 class RoomProvider extends Component {
     state = {
-        rooms: [],
-        sortedRooms:[],
+        rooms: [],    //all rooms 
+        sortedRooms:[],     // filtered rooms passed to the RoomList, being changed due to filter
         featuredRooms: [],
         loading: true,
         type: 'all',
@@ -25,6 +25,7 @@ class RoomProvider extends Component {
     componentDidMount() {
         // this.getData
         let rooms = this.formatData(items)
+ 
         let featuredRooms = rooms.filter(room => room.featured === true)
         let maxPrice = Math.max(...rooms.map(item => item.price));
         let maxSize = Math.max(...rooms.map(item => item.size));
@@ -47,7 +48,7 @@ class RoomProvider extends Component {
             
             return room;
         });
-        return tempItems
+        return tempItems;
     }
 
     getRoom = slug => {

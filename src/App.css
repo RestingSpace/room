@@ -318,6 +318,10 @@ h6 {
   display: block;
   transition: var(--mainTransition);
 }
+.reserve-image .img-container img{
+ 
+}
+
 .price-top {
   position: absolute;
   top: 0;
@@ -584,3 +588,37 @@ h6 {
 }
 
 /* end of rooms fitler*/
+
+/* start of reservation*/
+.reservation {
+  background-color: white;
+  padding: 30px;
+}
+
+.horizontal-box {
+  
+  position: relative;
+  border: 0px solid rgb(202, 202, 202);
+  border-radius: 3rem;
+  margin-left: auto;
+  margin-bottom: 0.1rem;
+  padding: 16px;
+  
+  display:flex;
+}
+
+.reserve-image {
+  flex: 1.5;
+  
+}
+
+.reserve-info {
+  flex: 5;
+  border: 0px solid rgb(255, 255, 255);
+  border-top-right-radius: 3rem;
+  border-bottom-right-radius: 3rem;
+  background-color: var(--restingBlue);
+  margin-left: 13px;
+  transition: var(--mainTransition);
+
+}
