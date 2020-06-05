@@ -30,6 +30,12 @@ class Auth extends Component{
             .then(res => {
                 if(res.status == 200)
                     console.log("success", res);
+                if(res.status == 403)
+                    alert("You have not registered, please sign up first!");
+            })
+            .catch(err => {
+                console.error(err);
+                alert("Error logging in please try again");
             });
     }
     register(){
@@ -65,7 +71,7 @@ class Auth extends Component{
                 })
                 .catch(err => {
                     console.error(err);
-                    alert("Error logging in please try again");
+                    alert("Error signing up please try again");
                 });
     }
 

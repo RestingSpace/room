@@ -21,8 +21,30 @@ class RoomProvider extends Component {
         pets: false,
     };
     // getDate
+    // getRooms(){
+    //     fetch("http://localhost:8080/getAllRooms")
+    //         .then(res => res.json())
+    //         .then(
+    //             (result) => {
+    //                 this.setState({
+    //                     items: result.items
+    //                 });
+    //             },
+    //             // Note: it's important to handle errors here
+    //             // instead of a catch() block so that we don't swallow
+    //             // exceptions from actual bugs in components.
+    //             (error) => {
+    //                 this.setState({
+    //                     isLoaded: true,
+    //                     error
+    //                 });
+    //             }
+    //         )
+    // }
 
     componentDidMount() {
+
+
         // this.getData
         let rooms = this.formatData(items)
  
