@@ -19,38 +19,61 @@ class RoomProvider extends Component {
         maxSize: 0,
         food: false,
         pets: false,
+        test:[]
     };
     // getDate
-    // getRooms(){
-    //     fetch("http://localhost:8080/getAllRooms")
-    //         .then(res => res.json())
-    //         .then(
-    //             (result) => {
-    //                 this.setState({
-    //                     items: result.items
-    //                 });
-    //             },
-    //             // Note: it's important to handle errors here
-    //             // instead of a catch() block so that we don't swallow
-    //             // exceptions from actual bugs in components.
-    //             (error) => {
-    //                 this.setState({
-    //                     isLoaded: true,
-    //                     error
-    //                 });
-    //             }
-    //         )
-    // }
+    getRooms(){
+        const getRoomsURL = 'http://localhost:8080/getAllRooms';
+        const action = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                'Authorization': document.cookie
+            }
+        }
+        fetch(getRoomsURL, action)
+            .then(res => {
+                //console.log(res);
+                if(res.status === 200){
+                    console.log("success getting rooms");
+                }
+                else if(res.status === 403){
+                    console.log("403 forbidden");
+                }
+                else{
+                    console.log("error getting rooms");
+                }
+                return res.json()
+            })
+            .then(
+                (result) => {
+                    this.setState({
+                        rooms: result
+                    });
+                    console.log(this.state.rooms)
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
 
     componentDidMount() {
-
-
+        this.getRooms();
         // this.getData
-        let rooms = this.formatData(items)
+        let rooms = this.formatData(items);
  
         let featuredRooms = rooms.filter(room => room.featured === true)
         let maxPrice = Math.max(...rooms.map(item => item.price));
         let maxSize = Math.max(...rooms.map(item => item.size));
+
         this.setState({
             rooms,
             sortedRooms: rooms,
@@ -58,7 +81,7 @@ class RoomProvider extends Component {
             loading: false,
             price: maxPrice,
             maxPrice,
-            maxSize,     
+            maxSize,
         });
     }
 

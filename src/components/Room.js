@@ -3,9 +3,9 @@ import defaultImage from '../images/imagenotavailable.png'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
 export default function Room({room}) {
-    console.log(room);
+    //console.log(room);
     const {name, slug, images, capacity, price, id} = room;
-    console.log(images[0]);
+    //console.log(images[0]);
         return (
             <article className="room">
                 <div className="img-container">

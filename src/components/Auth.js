@@ -28,8 +28,10 @@ class Auth extends Component{
         fetch(loginURL, action)
             //.then(results => results.json())
             .then(res => {
-                if(res.status == 200)
+                if(res.status == 200){
+                    document.cookie = res.headers.get('Authorization');
                     console.log("success", res);
+                }
                 if(res.status == 403)
                     alert("You have not registered, please sign up first!");
             })
