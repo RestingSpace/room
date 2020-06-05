@@ -13,21 +13,24 @@ class Auth extends Component{
         }
     }
     login(){
-        alert("login called");
-        // console.warn("state", this.state);
-        // fetch('http://127.0.0:8000/api/login', {
-        //     method: "POST",
-        //     headers:{
-        //         "Accept":"application/json",
-        //         "Content-Type":"application/json"
-        //     },
-        //     body:JSON.stringify(this.state)
-        // }).then((result)=>{
-        //     result.json().then((resp)=>{
-        //         console.log(resp);
-        //         localStorage.setItem("auth", JSON.stringify(resp.success.token));
-        //     })
-        // })
+        const loginURL = 'http://localhost:8080/login';
+        const action = {
+            method: 'POST',
+            headers: {
+                'Content-type': 'application/json',
+            },
+            body: JSON.stringify({
+                username: this.state.username,
+                password: this.state.password,
+            }),
+            "Access-Control-Allow-Origin":"*"
+        }
+        fetch(loginURL, action)
+            //.then(results => results.json())
+            .then(res => {
+                if(res.status == 200)
+                    console.log("success", res);
+            });
     }
     register(){
         alert("register called");
@@ -40,7 +43,11 @@ class Auth extends Component{
                     body: JSON.stringify({
                         username: this.state.username,
                         password: this.state.password,
-
+                        firstName:this.state.first_name,
+                        lastName:this.state.last_name,
+                        phone:this.state.phone,
+                        address:this.state.address,
+                        email:this.state.email
                     }),
                     "Access-Control-Allow-Origin": "*"
                 };
@@ -72,14 +79,14 @@ class Auth extends Component{
                     !this.state.isRegister?
                     <div className="login">
                         <h2> Login </h2>
-                        {this.state.email.length === 0 ? null : <div className='reminder'>email</div>}
-                        <input className = "login_input" type="text" placeholder=" email"
+                        <div className='reminder'>username</div>
+                        <input className = "login_input" type="text" placeholder=" username"
                                onChange={(e) => {
-                                   this.setState({email: e.target.value})
+                                   this.setState({username: e.target.value})
                                }}>
                         </input>
                         <br/><br/>
-                        {this.state.password.length === 0 ? null : <div className='reminder'>password</div>}
+                        <div className='reminder'>password</div>
                         <input className = "login_input" type="text" placeholder=" password"
                                onChange={(e) => {
                                    this.setState({password: e.target.value})
@@ -138,27 +145,13 @@ class Auth extends Component{
                             /> <br/><br/>
 
                             <h4>Contact Information</h4>
-                            <input className = "register_input" type="text" placeholder=" street address"
+                            <input className = "register_input" type="text" placeholder=" address"
                                    onChange={(e) => {
-                                       this.setState({street_address: e.target.value})
-                                   }}
-                            /><br/>
-                            <input className = "address_input" type="text" placeholder=" city"
-                                   onChange={(e) => {
-                                       this.setState({city: e.target.value})
-                                   }}
-                                   />
-                            <input className = "address_input" type="text" placeholder=" state"
-                                   onChange={(e) => {
-                                       this.setState({state: e.target.value})
-                                   }}
-                            />
-                            <input className = "address_input" type="text" placeholder=" zip"
-                                   onChange={(e) => {
-                                       this.setState({zip: e.target.value})
+                                       this.setState({address: e.target.value})
                                    }}
                             /><br/><br/>
-                            <input className = "register_input" type="text" placeholder=" phone number"
+
+                        <input className = "register_input" type="text" placeholder=" phone number"
                                    onChange={(e) => {
                                        this.setState({phone: e.target.value})
                                    }}
