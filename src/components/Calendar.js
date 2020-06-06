@@ -73,23 +73,7 @@ class Calendar extends Component {
             alert("Error getting reservations please try again");
         });
     }
-
-    // formatSchedule(schedules) {
-    //     let tempSchedules = schedules.map(schedule => {
-    //         let item = {...schedule.fields,id};
-    //         let start = new Date(schedule.start_time);
-    //         let end = new Date(schedule.end_time);
-    //         item["StartTime"] = start;
-    //         item["EndTime"] = end;
-    //
-    //         if(schedule.user_id === this.props.username)
-    //             item["IsReadonly"] = false;
-    //         else
-    //             item["IsReadonly"] = true;
-    //         return item;
-    //     });
-    //     return tempSchedules;
-    // }
+    
 
     onAddClick() {
         let Data = [{
