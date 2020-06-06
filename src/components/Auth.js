@@ -1,7 +1,12 @@
 import React, {Component} from 'react';
+import {RoomContext} from '../context'
+import UserProfile from './UserProfile';
+import { Redirect } from 'react-router-dom'
+
 
 class Auth extends Component{
-
+    static contextType = RoomContext;
+    
     constructor(props) {
         super(props);
         this.state={
@@ -9,10 +14,15 @@ class Auth extends Component{
             username:"",
             email:"",
             password:"",
-            confirmed_password: ''
+            confirmed_password: '',
+            redirect: false
         }
     }
+
     login(){
+         
+         
+         
         const loginURL = 'http://localhost:8080/login';
         const action = {
             method: 'POST',
@@ -29,8 +39,16 @@ class Auth extends Component{
             //.then(results => results.json())
             .then(res => {
                 if(res.status == 200){
+                    //let {setUsername, getRoom} = this.context;
                     document.cookie = res.headers.get('Authorization');
+                    
                     console.log("success", res);
+                    UserProfile.setName(this.state.username);
+                    this.setState({
+                        redirect: true
+                      })
+                    
+
                 }
                 if(res.status == 403)
                     alert("You have not registered, please sign up first!");
@@ -80,7 +98,9 @@ class Auth extends Component{
 
     render() {
 
-
+        if (this.state.redirect) {
+            return <Redirect to='/' />
+        }
         return (
             <div>
                 {

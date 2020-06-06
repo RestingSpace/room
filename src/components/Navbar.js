@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import logo from '../images/icons8-room-64.png';
 import {FaAlignRight} from 'react-icons/fa'
 import {Link} from 'react-router-dom'
-
+import Welcome from './Welcome'
 
 export default class Navbar extends Component {
     state = {
@@ -34,13 +34,16 @@ export default class Navbar extends Component {
                         <Link to="/rooms">Rooms</Link>
                     </li>
                     <li>
-                        <Link to="/reserve">Reserve Information</Link>
+                        <Link to="/reserve">Reservation</Link>
                     </li>
                     <li>
                         <Link to="/login">Login</Link>
                     </li>
                     <li>
                         <Link to="/register">Sign Up</Link>
+                    </li>
+                    <li>
+                        <Welcome></Welcome>
                     </li>
                 </ul>
             </div>

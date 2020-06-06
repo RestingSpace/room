@@ -9,17 +9,16 @@ class RoomProvider extends Component {
         rooms: [],    //all rooms 
         sortedRooms:[],     // filtered rooms passed to the RoomList, being changed due to filter
         featuredRooms: [],
-        loading: true,
+        loading: false,
         type: 'all',
         capacity: 1,
         price: 0,
         minPrice: 0,
         maxPrice: 0,
-        minSize: 0,
-        maxSize: 0,
         food: false,
         pets: false,
-        test:[]
+        test:[],
+        username:' '
     };
     // getDate
     getRooms(){
@@ -64,6 +63,9 @@ class RoomProvider extends Component {
             )
     }
 
+    setUsername (username) {
+        this.setState ({username})
+    }
 
     componentDidMount() {
         this.getRooms();
@@ -160,6 +162,7 @@ class RoomProvider extends Component {
                 ...this.state,
                 getRoom:this.getRoom,
                 handleChange: this.handleChange,
+                setUsername: this.setUsername
                 }}>
                 {this.props.children}
             </RoomContext.Provider>
