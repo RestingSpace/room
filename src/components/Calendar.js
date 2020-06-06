@@ -5,7 +5,11 @@ import {
 } from "@syncfusion/ej2-react-schedule";
 import {DataManager, WebApiAdaptor} from '@syncfusion/ej2-data';
 import { ButtonComponent } from '@syncfusion/ej2-react-buttons';
-import items from "../data"
+import items from "../data";
+import defaultImage from "../images/imagenotavailable.png";
+import {Link} from "react-router-dom";
+import { Redirect } from 'react-router-dom';
+import moment from 'moment';
 
 
 class Calendar extends Component {
@@ -73,24 +77,46 @@ class Calendar extends Component {
             alert("Error getting reservations please try again");
         });
     }
-    
 
     onAddClick() {
-        let Data = [{
-            Id: 1,
-            Subject: 'Conference',
-            StartTime: new Date(2018, 1, 12, 9, 0),
-            EndTime: new Date(2018, 1, 12, 10, 0),
-            IsAllDay: false
-        }, {
-            Id: 2,
-            Subject: 'Meeting',
-            StartTime: new Date(2018, 1, 15, 10, 0),
-            EndTime: new Date(2018, 1, 15, 11, 30),
-            IsAllDay: false
-        }];
-        this.scheduleObj.addEvent(Data);
-        this.buttonObj.element.setAttribute('disabled', 'true');
+         console.log(this.scheduleObj.activeCellsData.startTime);
+        // return <Redirect to={{
+        //     pathname:`/checkout`,
+        //     state:{
+        //         start_time: this.scheduleObj.activeCellsData.startTime,
+        //         end_time: this.scheduleObj.activeCellsData.endTime,
+        //         username: this.props.username,
+        //         rid:this.props.rid
+        //     }
+        // }}
+        // />
+        const URL = "http://localhost:8080/reserve2";
+        const requestOptions = {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            //credentials: "include",
+            body: JSON.stringify({
+                start_time: moment(this.scheduleObj.activeCellsData.startTime).format('YYYY-MM-DD hh:mm:ss'),
+                end_time: moment(this.scheduleObj.activeCellsData.endTime).format('YYYY-MM-DD hh:mm:ss'),
+                username: this.props.username,
+                rid:this.props.rid
+            }),
+            "Access-Control-Allow-Origin": "*"
+        };
+        fetch(URL, requestOptions).then(res => {
+            if (res.status === 200) {
+                console.log(res);
+                res.json().then((resp)=>{this.setState({reservationId: resp.id});});
+                alert("Reservation Succeeded!")
+            } else {
+                console.log(res.text());
+            }
+        })
+            .catch(err => {
+                console.error(err);
+                alert("Error making reservations please try again");
+            });
+        console.log(this.state.reservationId);
     }
 
      componentDidMount() {

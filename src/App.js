@@ -11,6 +11,7 @@ import Register from './pages/Register'
 import {Route, Switch} from "react-router-dom"; 
 
 import Navbar from "./components/Navbar";
+import CheckOut from "./pages/CheckOut"
 
 
 function App() {
@@ -24,6 +25,7 @@ function App() {
       <Route exact path="/reserve" component={ReserveInfo} />
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
+      <Route exact path="/checkout" component={CheckOut} />
       <Route component={Error} />
     </Switch>
   </>
