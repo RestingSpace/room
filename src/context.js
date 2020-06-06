@@ -48,9 +48,9 @@ class RoomProvider extends Component {
             .then(
                 (result) => {
                     this.setState({
-                        rooms: result
+                        test: result
                     });
-                    console.log(this.state.rooms)
+                    console.log(this.state.test)
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
