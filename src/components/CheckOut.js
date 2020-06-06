@@ -14,11 +14,11 @@ class CheckOut extends Component{
     reserve(){
         alert("reserve called");
         console.warn("state", this.state);
-        const signupURL = "http://localhost:8080/reserve";
+        const URL = "http://localhost:8080/reserve2";
         const requestOptions = {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            // credentials: "include",
+            //credentials: "include",
             body: JSON.stringify({
                 start_time: this.state.StartTime,
                 end_time: this.state.EndTime,
@@ -27,15 +27,24 @@ class CheckOut extends Component{
             }),
             "Access-Control-Allow-Origin": "*"
         };
-        fetch(signupURL, requestOptions).then((result)=>{
-            result.json().then((resp)=>{
-                this.setState({reservationId: resp.id});
-            })
+        fetch(URL, requestOptions).then(res => {
+            if (res.status === 200) { // success Log in
+                res.json().then((resp)=>{this.setState({reservationId: resp.id});})
+            } else {
+                console.log(res.text());
+            }
         })
+            .catch(err => {
+                console.error(err);
+                alert("Error logging in please try again");
+            });
+        console.log(this.state.reservationId);
     }
     render(){
-        return
+        return(
+            <button onClick={()=>this.reserve()}>click me</button>
 
-
+        )
     }
 }
+export default CheckOut;
