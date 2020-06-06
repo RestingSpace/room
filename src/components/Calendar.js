@@ -94,7 +94,7 @@ class Calendar extends Component {
         //     }
         // }}
         // />
-        const URL = "http://localhost:8080/reserve2";
+        const URL = "http://localhost:8080/reserve";
         const requestOptions = {
             method: "POST",
             headers: {
