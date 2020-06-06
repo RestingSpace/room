@@ -20,12 +20,7 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5910670-26e1-4781-b923-f99093488d8d" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/src/components/Summary.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/pages/CheckOut.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" afterPath="$PROJECT_DIR$/package-lock.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -95,7 +90,9 @@
       <workItem from="1590551203420" duration="2938000" />
       <workItem from="1591368277925" duration="15529000" />
       <workItem from="1591400426702" duration="9739000" />
-      <workItem from="1591414890622" duration="7552000" />
+      <workItem from="1591414890622" duration="7796000" />
+      <workItem from="1591450236252" duration="5343000" />
+      <workItem from="1591455734862" duration="629000" />
     </task>
     <servers />
   </component>
@@ -134,8 +131,7 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>82</line>
-          <properties lambdaOrdinal="-1" />
+          <line>86</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
       </breakpoints>

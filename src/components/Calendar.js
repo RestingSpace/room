@@ -26,7 +26,7 @@ class Calendar extends Component {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': document.cookie
+                //'Authorization': document.cookie
             }
         }
         fetch(getRoomReservationRL, action)
@@ -54,11 +54,12 @@ class Calendar extends Component {
                         let end = new Date(result.end_time);
                         item["StartTime"] = start;
                         item["EndTime"] = end;
+                        item["id"] = result.id;
                         if(result["user"]["username"] !== this.props.username)
                         {
                             //item["IsReadonly"] = true;
                             item["IsBlock"] = true;
-                            item["Subject"] = "Not Available";
+                            item["Subject"] = "Reserved by others";
                         }
                         else {
                             item["IsBlock"] = false;
@@ -79,7 +80,10 @@ class Calendar extends Component {
     }
 
     onAddClick() {
-         console.log(this.scheduleObj.activeCellsData.startTime);
+         if(this.props.username === null)
+             alert("Please login to make reservations!")
+        //console.log(this.scheduleObj.activeEventData);
+        // console.log(this.scheduleObj);
         // return <Redirect to={{
         //     pathname:`/checkout`,
         //     state:{
@@ -93,11 +97,14 @@ class Calendar extends Component {
         const URL = "http://localhost:8080/reserve2";
         const requestOptions = {
             method: "POST",
-            headers: { "Content-Type": "application/json" },
+            headers: {
+                "Content-Type": "application/json"
+                //'Authorization': document.cookie
+            },
             //credentials: "include",
             body: JSON.stringify({
-                start_time: moment(this.scheduleObj.activeCellsData.startTime).format('YYYY-MM-DD hh:mm:ss'),
-                end_time: moment(this.scheduleObj.activeCellsData.endTime).format('YYYY-MM-DD hh:mm:ss'),
+                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:MM:SS'),
+                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:MM:SS'),
                 username: this.props.username,
                 rid:this.props.rid
             }),
@@ -119,19 +126,44 @@ class Calendar extends Component {
         console.log(this.state.reservationId);
     }
 
+    onDeleteClick(){
+        //console.log(this.scheduleObj.activeEventData.event.id);
+        const URL = `http://localhost:8080/cancelReserve/${this.scheduleObj.activeEventData.event.id}`;
+        const requestOptions = {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json"
+                //'Authorization': document.cookie
+            },
+            //credentials: "include",
+            body: JSON.stringify({
+                id:this.scheduleObj.activeEventData.event.id
+            }),
+            "Access-Control-Allow-Origin": "*"
+        };
+        fetch(URL, requestOptions).then(res => {
+            if (res.status === 200) {
+                console.log(res);
+                alert("Reservation Deleted!")
+            } else {
+                console.log(res.text());
+            }
+        })
+            .catch(err => {
+                console.error(err);
+                alert("Error deleting the reservation please try again");
+            });
+    }
+
      componentDidMount() {
          this.getReservationByRoom();
-        //  let allSchedules = this.state.scheduleData;
-        //  let valid = formatSchedule(allSchedules);
-        //  this.setState({
-        //      validSchedules:valid
-        // });
      }
 
     render() {
         return (
             <div>
-                <ButtonComponent id='add' title='Add' ref={t => this.buttonObj = t} onClick={this.onAddClick.bind(this)}>Add</ButtonComponent>
+                <ButtonComponent id='add' title='Add' ref={t => this.buttonObj = t} onClick={this.onAddClick.bind(this)}>Reserve</ButtonComponent>
+                <ButtonComponent id='delete' title='delete' ref={t => this.buttonObj = t} onClick={this.onDeleteClick.bind(this)}>Delete</ButtonComponent>
                 <ScheduleComponent ref={t => this.scheduleObj = t} width='100%' height='550px' eventSettings={{ dataSource: this.state.scheduleData }}>
                     <ViewsDirective>
                         <ViewDirective option='Day'/>
