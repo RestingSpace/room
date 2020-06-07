@@ -13,9 +13,7 @@ class CheckOut extends Component {
         return (
             <>
             <Navbar/>
-            <div>
-
-            </div>
+            <Summary/>
             </>
         );
     }

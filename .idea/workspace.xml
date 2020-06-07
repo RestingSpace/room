@@ -22,6 +22,8 @@
     <list default="true" id="e5910670-26e1-4781-b923-f99093488d8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CheckOut.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -93,7 +95,9 @@
       <workItem from="1591414890622" duration="7796000" />
       <workItem from="1591450236252" duration="5343000" />
       <workItem from="1591455734862" duration="1301000" />
-      <workItem from="1591470175630" duration="346000" />
+      <workItem from="1591470175630" duration="609000" />
+      <workItem from="1591487513853" duration="1969000" />
+      <workItem from="1591492518402" duration="3469000" />
     </task>
     <servers />
   </component>
@@ -134,6 +138,12 @@
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
           <line>86</line>
           <option name="timeStamp" value="4" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="javascript">
+          <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
+          <line>22</line>
+          <properties lambdaOrdinal="-1" />
+          <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>

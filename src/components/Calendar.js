@@ -94,6 +94,7 @@ class Calendar extends Component {
         //     }
         // }}
         // />
+        console.log(this.scheduleObj.activeEventData.event);
         const URL = "http://localhost:8080/reserve";
         const requestOptions = {
             method: "POST",
@@ -103,18 +104,22 @@ class Calendar extends Component {
             },
             //credentials: "include",
             body: JSON.stringify({
-                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:MM:SS'),
-                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:MM:SS'),
+                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
+                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
                 username: this.props.username,
                 rid:this.props.rid
             }),
             "Access-Control-Allow-Origin": "*"
         };
+        // console.log(moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'));
+        // console.log(moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'));
         fetch(URL, requestOptions).then(res => {
             if (res.status === 200) {
                 console.log(res);
                 res.json().then((resp)=>{this.setState({reservationId: resp.id});});
-                alert("Reservation Succeeded!")
+                alert("Reservation Succeeded!");
+                this.getReservationByRoom();
+                this.forceUpdate();
             } else {
                 console.log(res.text());
             }
@@ -123,7 +128,7 @@ class Calendar extends Component {
                 console.error(err);
                 alert("Error making reservations please try again");
             });
-        console.log(this.state.reservationId);
+       // console.log(this.state.reservationId);
     }
 
     onDeleteClick(){
@@ -145,6 +150,8 @@ class Calendar extends Component {
             if (res.status === 200) {
                 console.log(res);
                 alert("Reservation Deleted!")
+                this.getReservationByRoom();
+                this.forceUpdate();
             } else {
                 console.log(res.text());
             }
@@ -153,11 +160,13 @@ class Calendar extends Component {
                 console.error(err);
                 alert("Error deleting the reservation please try again");
             });
+        this.getReservationByRoom();
     }
 
      componentDidMount() {
          this.getReservationByRoom();
      }
+
 
     render() {
         return (
