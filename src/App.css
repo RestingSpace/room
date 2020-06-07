@@ -558,11 +558,11 @@ h6 {
   text-transform: uppercase;
   cursor: pointer;
 }
-.login button primary{
+.login button primary, .checkout button primary{
   background: transparent;
   color: var(--restingBlue);
 }
-.login button:hover{
+.login button:hover, .checkout button:hover{
   background: transparent;
   color: var(--restingBlue);
 }
@@ -580,10 +580,28 @@ h6 {
   border-radius: 0.8rem;
   padding: 0.5rem;
 }
-.address_input {
+.box{
+  min-height: calc(100vh - 66px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.checkout {
+  background: rgba(0, 0, 0, 0.5);
+  color: var(--mainWhite);
+  padding: 2rem 15rem;
+  text-transform: capitalize;
+  letter-spacing: var(--mainSpacing);
+}
+.checkout_input{
+  height: 2rem;
+  width: 30rem;
+  padding: 0.5rem;
+}
+.credit_card {
   height: 2rem;
   width: 10rem;
-  border-radius: 0.8rem;
   padding: 0.5rem;
 }
 
