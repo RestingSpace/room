@@ -12,7 +12,22 @@ export default function SingleReserve({room}) {
                     <Room key={room.id} room={room}></Room>
                 </section>
                 <section className='reserve-info'>
-                    start and end time 
+                 
+                    <h5>
+                        start time: 
+                    </h5>
+                    <h5>
+                        end time:
+                    </h5>
+                    <h5>
+                        price: 
+                    </h5>
+                    <h5>
+                        reservation id: 
+                    </h5>
+                    <button>
+                        
+                    </button>
                 </section>
                 
             </div>

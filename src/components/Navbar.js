@@ -20,7 +20,7 @@ export default class Navbar extends Component {
     
     render() {
         
-        const {isLogin} = this.context;
+        const {isLogin, getReservation} = this.context;
         return (
         <nav className="navbar">
             <div className="nav-center">
@@ -46,7 +46,7 @@ export default class Navbar extends Component {
                     {
                         isLogin ?
                             <li>
-                                <Link to="/reserve">Reservation</Link>
+                                <Link to="/reserve" onChange={getReservation}>Reservation</Link>
                             </li>
                             :
                             <li>
