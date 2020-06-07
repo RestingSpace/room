@@ -11,7 +11,7 @@ const getUnique = (items, value) => {
 const RoomsFilter = ({rooms}) => {
     const context = useContext(RoomContext);
     const {
-        handleChange, type, capacity, price, minPrice, maxPrice, minSize, maxSize, food, pets
+         handleChange, type, capacity, price, minPrice, maxPrice, minSize, maxSize, food, pets
     } = context;
     
     // get unique types

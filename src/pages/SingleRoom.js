@@ -19,13 +19,14 @@ export default class SingleRoom extends Component {
         };
     }
 
-    static  contextType = RoomContext;
+    static contextType = RoomContext;
 
     //componentDidMount() {}
 
     render() {
         const {getRoom} = this.context;
         const room = getRoom(this.state.slug);
+        console.log(room);
         if (!room) {
             return <div className="error">
                 <h3>no such room could be found...</h3>

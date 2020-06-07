@@ -30,8 +30,8 @@ export default class Services extends Component {
 
     aa() {
         this.state.services.map((item, index) => {
-            console.log(item.info);
-            console.log(index);
+            // console.log(item.info);
+            // console.log(index);
           });
         
     }
