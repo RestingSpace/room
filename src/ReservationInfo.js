@@ -96,5 +96,29 @@ export default [
       "phone": null,
       "billingAddress": null
   }
+},
+{
+  "id": 3,
+  "start_time": "2020-06-07 10:00:00",
+  "end_time": "2020-06-07 23:00:00",
+  "totalPrice": 0.0,
+  "room": {
+      "rid": 1,
+      "location": "LA",
+      "price": 0,
+      "size": 5,
+      "roomImageURL": null,
+      "valid": false
+  },
+  "user": {
+      "username": "jiuchao",
+      "password": "$2a$10$K6mkPx5oFeOLJmHiPqUG6uCe.56oRtzVi501U59UnT.Xu8FzUsg4W",
+      "firstName": null,
+      "lastName": null,
+      "email": null,
+      "address": null,
+      "phone": null,
+      "billingAddress": null
+  }
 }
 ]

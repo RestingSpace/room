@@ -618,8 +618,16 @@ h6 {
 .reservation {
   background-color: white;
   padding: 30px;
+  border-bottom: 30px;
 }
 
+.reserve-block{
+  padding-bottom: 50px;
+  border-bottom: 70px;
+  border-top: solid;
+  border-width: 0.5px;
+  border-color: var(--primaryColor);
+}
 .horizontal-box {
   
   position: relative;
@@ -645,5 +653,66 @@ h6 {
   background-color: var(--restingBlue);
   margin-left: 13px;
   transition: var(--mainTransition);
+  display: inline-flex;
+}
 
+.reserve-info h5{
+  margin: 15px;
+  font-size: 0.9rem;
+  font-weight: 0.1rem;
+}
+
+.reserve-text {
+  width: 70%;
+}
+.reserve-count {
+  width: 30%;
+}
+
+.reserve-rest {
+  width: 40%;
+  margin: 15px;
+}
+
+.reserve-rest button{
+
+  height: 50px;
+  margin-top: 8px;
+  
+}
+
+.reserve-rest button:hover{
+  background: transparent;
+  color: var(--mainSpacing);
+}
+   /** start of countDown **/
+
+
+.countdown-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 8px;
+  padding-right: 10px;
+}
+.countdown-item {
+  color: #111;
+  font-size: 35px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  line-height: 30px;
+  margin: 8px;
+  padding-top: 8px;
+  position: relative;
+  width: 60px;
+  height: 60px;
+}
+
+.countdown-item span {
+  color: #333;
+  font-size: 10px;
+  font-weight: 600;
+  text-transform: uppercase;
 }

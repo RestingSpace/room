@@ -20,7 +20,7 @@ class RoomProvider extends Component {
         pets: false,
         test:[],
         username:' ',
-        isLogin: true
+        isLogin: false
     };
     // getDate
 

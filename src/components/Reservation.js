@@ -8,7 +8,7 @@ import ReservationInfo from '../ReservationInfo'
 
 function Reservation ({context}) { 
         let futureRes = [];
-        let currenRes =[];
+        let currentRes =[];
         let pastRes = [];
 
         //test //2019-06-06 17:00:00
@@ -88,10 +88,14 @@ function Reservation ({context}) {
                 let {start_time, end_time, totalPrice} = reservationRooms;
                 let now_time = moment();
                 reservationRooms.map((room) => {
-                    console.log(now_time);
-                    console.log(room.start_time);
+               
                     if (moment(now_time).isAfter(room.start_time)) {
-                        pastRes = [...pastRes, room];
+                        if (moment(now_time).isAfter(room.end_time)){
+                            pastRes = [...pastRes, room];
+                        }
+                        else{
+                            currentRes = [...currentRes, room];
+                        }
                     }
                     else{
                         futureRes = [...futureRes, room];
@@ -99,11 +103,23 @@ function Reservation ({context}) {
                 })
 
                 console.log(pastRes);
+                console.log(currentRes);
                 console.log(futureRes);
-                
-                var date_time = '2019-06-07 17:00:00';
-                var isafter = moment(now_time).isAfter('2019-06-06 17:00:00');
-                console.log(isafter);
+        
+                let handleTimeReservation = (pastRes) => {
+                    let handleSingleReserve = (pastRes) => {
+                        pastRes.map(item => {
+                            return <SingleReserve key={item.id} room={item} />;
+                    })}
+                    if (pastRes.length < 1) {
+                        return null;
+                    }
+                    else{
+                        let singleR = handleSingleReserve();
+                        return singleR;
+                    }
+                }
+
         
 
         if (rooms === undefined) {
@@ -113,13 +129,30 @@ function Reservation ({context}) {
         else{
             return (
                 <div className='reservation'>
-                    <Moment parse="YYYY-MM-DD HH:mm">
-                        1976-04-19 12:59
-                    </Moment>
-                    {rooms.map(item => {
-                        return <SingleReserve key={item.id} room={item} />;
-                    })}
+                    <div className="reserve-block">
+                    <h4>Ongoing Reservation</h4>
+                    {
+                        currentRes.map(item => {
+                            return <SingleReserve key={item.id} room={item} condition="current"/>;
+                        })} 
+                    </div>
                     
+                    <div className="reserve-block">
+                    <h4>Future Reservation</h4>
+                    {
+                        futureRes.map(item => {
+                            return <SingleReserve key={item.id} room={item} condition="future"/>;
+                        })}
+                    </div>
+
+                    <div className="reserve-block">
+                    <h4>History</h4>
+                    
+                        {
+                        pastRes.map(item => {
+                            return <SingleReserve key={item.id} room={item} condition="past"/>;
+                        })}
+                    </div> 
                 </div>
             )
         }
