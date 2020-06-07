@@ -9,6 +9,7 @@ class RoomProvider extends Component {
         rooms: [],    //all rooms 
         sortedRooms:[],     // filtered rooms passed to the RoomList, being changed due to filter
         featuredRooms: [],
+        reservationRooms: [],
         loading: false,
         type: 'all',
         capacity: 1,
@@ -18,7 +19,8 @@ class RoomProvider extends Component {
         food: false,
         pets: false,
         test:[],
-        username:' '
+        username:' ',
+        isLogin: false
     };
     // getDate
     getRooms(){
@@ -63,8 +65,15 @@ class RoomProvider extends Component {
             )
     }
 
-    setUsername (username) {
-        this.setState ({username})
+   
+
+    toggleLogin = (loginState,username) => {
+        this.setState({
+            isLogin: loginState,
+            username: username
+        })
+        console.log(this.state.isLogin)
+        console.log(this.state.username)
     }
 
     componentDidMount() {
@@ -156,19 +165,65 @@ class RoomProvider extends Component {
         });
     };
 
+    getReservation() {
+        const getReservationURL = 'http://localhost:8080/reservations/{this.state.username}';
+        const action = {
+            method: 'GET',
+            headers: {
+                'Content-type': 'application/json',
+                //'Authorization': document.cookie
+            }
+        }
+        fetch(getReservationURL, action)
+            .then(res => {
+                //console.log(res);
+                if(res.status === 200){
+                    console.log("success getting reservation");
+                }
+                else if(res.status === 403){
+                    console.log("403 forbidden");
+                }
+                else{
+                    console.log("error getting reservation");
+                    return;
+                }
+                return res.json()
+            })
+            .then(
+                (result) => {
+                    // this.setState({
+                    //     reservationRooms: result
+                    // });
+                    console.log(result)
+                },
+                // Note: it's important to handle errors here
+                // instead of a catch() block so that we don't swallow
+                // exceptions from actual bugs in components.
+                (error) => {
+                    this.setState({
+                        isLoaded: true,
+                        error
+                    });
+                }
+            )
+    }
+
     render() {
         return (
             <RoomContext.Provider value={{
                 ...this.state,
                 getRoom:this.getRoom,
                 handleChange: this.handleChange,
-                setUsername: this.setUsername
+                setUsername: this.setUsername,
+                toggleLogin: (e, f) => this.toggleLogin(e, f),
+                getReservation: this.getReservation
                 }}>
                 {this.props.children}
             </RoomContext.Provider>
         );
     }
 }
+
 
 
 const RoomConsumer = RoomContext.Consumer;

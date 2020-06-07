@@ -155,6 +155,13 @@ h6 {
     padding: 0.5rem 0;
   }
 }
+
+.welcome {
+  justify-content: flex-end;
+  flex: 100%;
+  order: -1;
+  text-align: right;
+}
 /* end of navbar */
 /* Hero */
 .defaultHero,

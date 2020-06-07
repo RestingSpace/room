@@ -2,18 +2,18 @@ var UserProfile = (function() {
     var username = "";
   
     var getName = function() {
-      return username;    // Or pull this from cookie/localStorage
+      return username;   
     };
   
     var setName = function(name) {
       username = name;     
-      // Also set this in cookie/localStorage
       console.log(username);
     };
   
     return {
       getName: getName,
       setName: setName
+
     }
   
   })();

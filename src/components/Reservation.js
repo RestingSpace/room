@@ -7,8 +7,9 @@ import {withRoomConsumer} from '../context'
 function Reservation ({context}) { 
     
     
-        const {rooms, loading} = context;
+        const {rooms, loading, getReservation} = context;
         console.log(rooms);
+        console.log(getReservation());
         if (rooms === undefined) {
            return <Loading></Loading>
         }

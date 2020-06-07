@@ -19,7 +19,7 @@ export default class SingleRoom extends Component {
         };
     }
 
-    static  contextType = RoomContext;
+    static contextType = RoomContext;
 
     //componentDidMount() {}
 

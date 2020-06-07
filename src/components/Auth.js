@@ -15,14 +15,12 @@ class Auth extends Component{
             email:"",
             password:"",
             confirmed_password: '',
-            redirect: false
+            redirect: false,
+            isLogin: false
         }
     }
 
     login(){
-         
-         
-         
         const loginURL = 'http://localhost:8080/login';
         const action = {
             method: 'POST',
@@ -39,15 +37,17 @@ class Auth extends Component{
             //.then(results => results.json())
             .then(res => {
                 if(res.status == 200){
-                    //let {setUsername, getRoom} = this.context;
+                    let {setUsername, getRoom, toggleLogin} = this.context;
                     document.cookie = res.headers.get('Authorization');
                     
                     console.log("success", res);
                     UserProfile.setName(this.state.username);
                     this.setState({
-                        redirect: true
+                        redirect: true,
+                        isLogin: true
                       })
-                    
+                    console.log(this.state.isLogin)
+                    toggleLogin(this.state.isLogin, this.state.username);
 
                 }
                 if(res.status == 403)
@@ -84,7 +84,7 @@ class Auth extends Component{
                         alert("This username already exists.")
                     }
                     if (res.status === 200) { // success Log in
-                        this.setState({isRegister: false});
+                        this.setState({isRegister: false, isLogin: true});
                     } else {
                         console.log(res.text());
                     }

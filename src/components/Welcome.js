@@ -5,13 +5,19 @@ import {RoomContext} from '../context'
 import  UserProfile from './UserProfile.js'
 
 export default function Welcome() {
-   
-    const {getName} = UserProfile;
-    const name = getName();
+    const context = useContext(RoomContext);
+    const {username, isLogin} = context;
+    console.log(username);
+    
     return (
         
-        <div className = "nav-links a ">
-            <h4>welcome ${name}</h4>
+        <div className = "nav-links a welcome">
+            {!isLogin ?
+                null 
+                :
+                <p>Welcome {username}</p>
+        }
+            
         </div>
     )
     
