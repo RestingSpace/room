@@ -160,6 +160,7 @@ h6 {
   justify-content: flex-end;
   flex: 100%;
   order: -1;
+  font-weight:bold;
   text-align: right;
 }
 /* end of navbar */
@@ -635,4 +636,8 @@ h6 {
   margin-left: 13px;
   transition: var(--mainTransition);
 
+}
+
+.icon-people{
+  font-size:1.7rem;
 }
