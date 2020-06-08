@@ -12,7 +12,7 @@ export default function Room({room}) {
                     <img src={images[0] || defaultImage}></img>
                     <div className="price-top">
                         <h6>${price}</h6> 
-                        <p>/15 min</p>
+                        <p>/1 hour</p>
                     </div>
                     <Link to={`/rooms/${slug}`} className="room-link btn-primary">
                         see more 
