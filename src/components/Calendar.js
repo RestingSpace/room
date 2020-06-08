@@ -1,4 +1,4 @@
-import React, {Component} from 'react';
+import React, {Component, useContext} from 'react';
 import {
     Inject, ScheduleComponent, Day, Week, WorkWeek, Month, Agenda,
     EventSettingsModel, DragAndDrop, Resize, ViewsDirective, ViewDirective
@@ -10,6 +10,7 @@ import defaultImage from "../images/imagenotavailable.png";
 import {Link} from "react-router-dom";
 import { Redirect } from 'react-router-dom';
 import moment from 'moment';
+import {RoomContext} from "../context"
 
 
 class Calendar extends Component {
@@ -19,6 +20,7 @@ class Calendar extends Component {
             scheduleData:[]
         };
     }
+    static context = RoomContext;
 
     getReservationByRoom(){
         const getRoomReservationRL = `http://localhost:8080/reservationsbyRoom/${this.props.rid}`;
@@ -80,8 +82,24 @@ class Calendar extends Component {
     }
 
     onAddClick() {
-         if(this.props.username === null)
-             alert("Please login to make reservations!")
+        // const context = this.context;
+        // console.log(this.context);
+        // const {username, isLogin} = context;
+        // console.log(isLogin);
+        if(this.props.username === ' ')
+            alert('You must login to make reservations!');
+        else {
+            let data = ({
+                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
+                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
+                username: this.props.username,
+                rid: this.props.rid
+            });
+            console.log(`/checkout?start_time=${data.start_time}&end_time=${data.end_time}&username=${data.username}&rid=${data.rid}`);
+            if (this.props.username === null)
+                alert("Please login to make reservations!")
+            window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&username=${data.username}&rid=${data.rid}`;
+        }
         //console.log(this.scheduleObj.activeEventData);
         // console.log(this.scheduleObj);
         // return <Redirect to={{
@@ -94,40 +112,40 @@ class Calendar extends Component {
         //     }
         // }}
         // />
-        console.log(this.scheduleObj.activeEventData.event);
-        const URL = "http://localhost:8080/reserve";
-        const requestOptions = {
-            method: "POST",
-            headers: {
-                "Content-Type": "application/json"
-                //'Authorization': document.cookie
-            },
-            //credentials: "include",
-            body: JSON.stringify({
-                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
-                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
-                username: this.props.username,
-                rid:this.props.rid
-            }),
-            "Access-Control-Allow-Origin": "*"
-        };
-        // console.log(moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'));
-        // console.log(moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'));
-        fetch(URL, requestOptions).then(res => {
-            if (res.status === 200) {
-                console.log(res);
-                res.json().then((resp)=>{this.setState({reservationId: resp.id});});
-                alert("Reservation Succeeded!");
-                this.getReservationByRoom();
-                this.forceUpdate();
-            } else {
-                console.log(res.text());
-            }
-        })
-            .catch(err => {
-                console.error(err);
-                alert("Error making reservations please try again");
-            });
+        // console.log(this.scheduleObj.activeEventData.event);
+        // const URL = "http://localhost:8080/reserve";
+        // const requestOptions = {
+        //     method: "POST",
+        //     headers: {
+        //         "Content-Type": "application/json"
+        //         //'Authorization': document.cookie
+        //     },
+        //     //credentials: "include",
+        //     body: JSON.stringify({
+        //         start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
+        //         end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
+        //         username: this.props.username,
+        //         rid:this.props.rid
+        //     }),
+        //     "Access-Control-Allow-Origin": "*"
+        // };
+        // // console.log(moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'));
+        // // console.log(moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'));
+        // fetch(URL, requestOptions).then(res => {
+        //     if (res.status === 200) {
+        //         console.log(res);
+        //         res.json().then((resp)=>{this.setState({reservationId: resp.id});});
+        //         alert("Reservation Succeeded!");
+        //         this.getReservationByRoom();
+        //         this.forceUpdate();
+        //     } else {
+        //         console.log(res.text());
+        //     }
+        // })
+        //     .catch(err => {
+        //         console.error(err);
+        //         alert("Error making reservations please try again");
+        //     });
        // console.log(this.state.reservationId);
     }
 

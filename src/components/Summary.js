@@ -9,12 +9,50 @@ class Summary extends Component {
         }
     }
 
+    handlePlaceOrder(){
+        const URL = "http://localhost:8080/reserve";
+        const requestOptions = {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+                //'Authorization': document.cookie
+            },
+            //credentials: "include",
+            body: JSON.stringify({
+                start_time: this.props.start_time,
+                end_time: this.props.end_time,
+                username: this.props.username,
+                rid:this.props.rid
+            }),
+            "Access-Control-Allow-Origin": "*"
+        };
+        // console.log(moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'));
+        // console.log(moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'));
+        fetch(URL, requestOptions).then(res => {
+            if (res.status === 200) {
+                console.log(res);
+                res.json().then((resp)=>{this.setState({reservationId: resp.id});});
+                // alert("Reservation Succeeded!");
+                this.setState({isCheckedOut: true});
+                this.forceUpdate();
+                // this.getReservationByRoom();
+                // this.forceUpdate();
+            } else {
+                console.log(res.text());
+            }
+        })
+            .catch(err => {
+                console.error(err);
+                alert("Error making reservations please try again");
+            });
+    }
+
     handleClick(){
-        console.log("email sent!");
-        //window.location = "/rooms";
+        alert("email sent!");
+        window.location = "/rooms";
     }
     redirect(){
-        //window.location = "/rooms"
+        window.location = "/rooms"
     }
 
 
@@ -23,7 +61,7 @@ class Summary extends Component {
             <div>
                 {
                     !this.state.isCheckedOut?
-                        <div className="checkout">
+                        <div className="login">
                             <h4>Credit Card Information</h4>
                             <input className = "checkout_input" type="text" placeholder=" credit card number"
                             /><br/><br/>
@@ -46,10 +84,8 @@ class Summary extends Component {
                             <input className = "credit_card" type="text" placeholder=" Zip"
                             />
                             <div>
-                                <button className ='primary' onClick={() => {
-                                    this.setState({isCheckedOut: true});
-                                    this.forceUpdate();
-                                }}>Place Order</button>
+                                <button className ='primary' onClick={()=>
+                                    this.handlePlaceOrder()}>Place Order</button>
                             </div>
 
                         </div>
@@ -57,10 +93,12 @@ class Summary extends Component {
                         :
 
                         <div className="login">
-                            <p>Thanks for your order!</p>
-                            <p>Do you want to email the order information to you?</p>
-                            <button onClick={this.handleClick()}>Yes</button>
-                            <button onClick = {this.redirect()}>No</button>
+                            <h1>Thanks for your order!</h1>
+                            <h4> You reservation with room {this.props.rid} from {this.props.start_time} to {this.props.end_time} has been placed! Go to reservation page to check the detailed information. </h4>
+                            <br/>
+                            <h4> Do you want to receive the reservation information and the barcode to access the room by email?</h4>
+                            <button onClick={()=>this.handleClick()}>Yes</button>
+                            <button onClick = {()=>this.redirect()}>No</button>
 
                         </div>
                 }
