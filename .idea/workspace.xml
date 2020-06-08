@@ -22,9 +22,7 @@
     <list default="true" id="e5910670-26e1-4781-b923-f99093488d8d" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/pages/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CheckOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Welcome.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Welcome.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +97,8 @@
       <workItem from="1591470175630" duration="609000" />
       <workItem from="1591487513853" duration="1969000" />
       <workItem from="1591492518402" duration="7302000" />
+      <workItem from="1591500844685" duration="1198000" />
+      <workItem from="1591559680601" duration="18049000" />
     </task>
     <servers />
   </component>
@@ -132,18 +132,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>33</line>
+          <line>36</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>86</line>
+          <line>105</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>22</line>
-          <properties lambdaOrdinal="-1" />
+          <line>24</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>

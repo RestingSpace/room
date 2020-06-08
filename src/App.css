@@ -160,6 +160,7 @@ h6 {
   justify-content: flex-end;
   flex: 100%;
   order: -1;
+  font-weight:bold;
   text-align: right;
 }
 /* end of navbar */
@@ -587,28 +588,17 @@ h6 {
   border-radius: 0.8rem;
   padding: 0.5rem;
 }
-.box{
-  min-height: calc(100vh - 66px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.checkout {
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--mainWhite);
-  padding: 2rem 15rem;
-  text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
-}
 .checkout_input{
   height: 2rem;
   width: 30rem;
+  border-radius: 0.8rem;
   padding: 0.5rem;
 }
 .credit_card {
   height: 2rem;
   width: 10rem;
+  border-radius: 0.8rem;
   padding: 0.5rem;
 }
 
@@ -695,6 +685,7 @@ h6 {
   margin: 8px;
   padding-right: 10px;
 }
+
 .countdown-item {
   color: #111;
   font-size: 35px;
@@ -715,4 +706,7 @@ h6 {
   font-size: 10px;
   font-weight: 600;
   text-transform: uppercase;
+  .icon-people{
+  font-size:1.7rem;
 }
+
