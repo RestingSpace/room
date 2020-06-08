@@ -6,6 +6,7 @@ class Summary extends Component {
         super(props);
         this.state={
             isCheckedOut:false,
+            reservationId:'',
             credit_number:'',
             name:'',
             month:'',
@@ -71,8 +72,29 @@ class Summary extends Component {
     }
 
     handleClick(){
-        alert("email sent!");
-        window.location = "/rooms";
+        //console.log(this.scheduleObj.activeEventData.event.id);
+        const URL = `http://localhost:8080/send-email/${this.state.reservationId}`;
+        const Options = {
+            method: "GET",
+            headers: {
+                "Content-Type": "application/json"
+                //'Authorization': document.cookie
+            },
+            "Access-Control-Allow-Origin": "*"
+        }
+        fetch(URL, Options).then(res => {
+            if (res.status === 200) {
+                console.log(res);
+                alert("Email sent!");
+                window.location = "/rooms";
+            } else {
+                console.log(res.text());
+            }
+        })
+            .catch(err => {
+                console.error(err);
+                alert("ERROR sending an email!");
+            });
     }
     redirect(){
         window.location = "/rooms"

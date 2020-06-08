@@ -29,7 +29,8 @@ class Calendar extends Component {
             headers: {
                 'Content-type': 'application/json',
                 //'Authorization': document.cookie
-            }
+            },
+            "Access-Control-Allow-Origin": "*"
         }
         fetch(getRoomReservationRL, action)
             .then(res => {
@@ -178,7 +179,6 @@ class Calendar extends Component {
                 console.error(err);
                 alert("Error deleting the reservation please try again");
             });
-        this.getReservationByRoom();
     }
 
      componentDidMount() {
