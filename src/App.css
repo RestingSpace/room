@@ -587,28 +587,17 @@ h6 {
   border-radius: 0.8rem;
   padding: 0.5rem;
 }
-.box{
-  min-height: calc(100vh - 66px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
 
-.checkout {
-  background: rgba(0, 0, 0, 0.5);
-  color: var(--mainWhite);
-  padding: 2rem 15rem;
-  text-transform: capitalize;
-  letter-spacing: var(--mainSpacing);
-}
 .checkout_input{
   height: 2rem;
   width: 30rem;
+  border-radius: 0.8rem;
   padding: 0.5rem;
 }
 .credit_card {
   height: 2rem;
   width: 10rem;
+  border-radius: 0.8rem;
   padding: 0.5rem;
 }
 

@@ -25,6 +25,7 @@
       <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/components/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/pages/CheckOut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/CheckOut.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/pages/SingleRoom.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/pages/SingleRoom.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -99,6 +100,8 @@
       <workItem from="1591470175630" duration="609000" />
       <workItem from="1591487513853" duration="1969000" />
       <workItem from="1591492518402" duration="7302000" />
+      <workItem from="1591500844685" duration="1198000" />
+      <workItem from="1591559680601" duration="11152000" />
     </task>
     <servers />
   </component>
@@ -132,18 +135,17 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>33</line>
+          <line>35</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>86</line>
+          <line>104</line>
           <option name="timeStamp" value="4" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="javascript">
           <url>file://$PROJECT_DIR$/src/components/Calendar.js</url>
-          <line>22</line>
-          <properties lambdaOrdinal="-1" />
+          <line>24</line>
           <option name="timeStamp" value="5" />
         </line-breakpoint>
       </breakpoints>
