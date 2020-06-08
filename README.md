@@ -5,7 +5,8 @@ npm install react-router-dom<br />
 npm install @syncfusion/ej2-react-schedule -- save<br/>
 npm install @syncfusion/ej2-react-buttons<br />
 npm install - -save styled-components<br />
-npm install moment
+npm install moment<br />
+npm install contentful
 ## Available Scripts
 
 In the project directory, you can run:
