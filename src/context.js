@@ -27,13 +27,14 @@ class RoomProvider extends Component {
 
 
     // getDate
+
     getRooms(){
         const getRoomsURL = 'http://localhost:8080/getAllRooms';
         const action = {
             method: 'GET',
             headers: {
                 'Content-type': 'application/json',
-                'Authorization': document.cookie
+                //'Authorization': document.cookie
             }
         }
         fetch(getRoomsURL, action)
@@ -81,6 +82,7 @@ class RoomProvider extends Component {
     }
 
 
+
     getData = async () => {
         try {
             let response = await Client.getEntries({
@@ -109,6 +111,11 @@ class RoomProvider extends Component {
     componentDidMount() {
         this.getRooms();
         this.getData();
+        this.getReservation();
+    }
+
+    componentDidUpdate() {
+        
     }
 
     formatData(items) {
@@ -181,7 +188,7 @@ class RoomProvider extends Component {
     };
 
     getReservation() {
-        const getReservationURL = 'http://localhost:8080/reservations/{this.state.username}';
+        const getReservationURL = 'http://localhost:8080/reservations/jiuchao';
         const action = {
             method: 'GET',
             headers: {
@@ -209,7 +216,9 @@ class RoomProvider extends Component {
                     // this.setState({
                     //     reservationRooms: result
                     // });
-                    console.log(result)
+                    console.log(result);
+                    return result;
+                    
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -229,7 +238,6 @@ class RoomProvider extends Component {
                 ...this.state,
                 getRoom:this.getRoom,
                 handleChange: this.handleChange,
-                setUsername: this.setUsername,
                 toggleLogin: (e, f) => this.toggleLogin(e, f),
                 getReservation: this.getReservation
                 }}>
