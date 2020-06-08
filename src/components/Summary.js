@@ -86,7 +86,7 @@ class Summary extends Component {
             if (res.status === 200) {
                 console.log(res);
                 alert("Email sent!");
-                window.location = "/rooms";
+                window.location = `/reserve`;
             } else {
                 console.log(res.text());
             }
@@ -97,7 +97,7 @@ class Summary extends Component {
             });
     }
     redirect(){
-        window.location = "/rooms"
+        window.location = `/reserve`;
     }
 
 
