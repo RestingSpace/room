@@ -25,6 +25,7 @@ export default class SingleRoom extends Component {
 
     render() {
         const {getRoom} = this.context;
+        const {username} = this.context;
         const room = getRoom(this.state.slug);
         console.log(room);
         if (!room) {
@@ -89,7 +90,7 @@ export default class SingleRoom extends Component {
                 <section className="room-extras">
                     <h3>Reservation </h3>
                     <div>
-                        <Calendar rid={1} username = {"zyc"} />
+                        <Calendar rid={1} username = {username} />
                     </div>
 
                 </section>
