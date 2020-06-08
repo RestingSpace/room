@@ -29,7 +29,7 @@ class Summary extends Component {
             this.state.city === ''||
             this.state.state === ''||
             this.state.zip === '')
-            alert("Please enter full payment information to play order!");
+            alert("Please enter full payment information to place orders!");
         else {
             const URL = "http://localhost:8080/reserve";
             const requestOptions = {
