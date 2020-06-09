@@ -90,7 +90,7 @@ export default class SingleRoom extends Component {
                 <section className="room-extras">
                     <h3>Reservation </h3>
                     <div>
-                        <Calendar rid={1} username = {username} />
+                        <Calendar rid={67} slug = {this.state.slug}/>
                     </div>
 
                 </section>

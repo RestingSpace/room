@@ -30,6 +30,8 @@ class Summary extends Component {
             this.state.state === ''||
             this.state.zip === '')
             alert("Please enter full payment information to place orders!");
+        else if(localStorage.getItem('username') === null)
+            alert("Your session expired, please login again!")
         else {
             const URL = "http://localhost:8080/reserve";
             const requestOptions = {
@@ -42,7 +44,7 @@ class Summary extends Component {
                 body: JSON.stringify({
                     start_time: this.props.start_time,
                     end_time: this.props.end_time,
-                    username: this.props.username,
+                    username: localStorage.getItem('username'),
                     rid: this.props.rid
                 }),
                 "Access-Control-Allow-Origin": "*"
@@ -165,7 +167,7 @@ class Summary extends Component {
 
                         <div className="login">
                             <h1>Thanks for your order!</h1>
-                            <h4> You reservation with room {this.props.rid} from {this.props.start_time} to {this.props.end_time} has been placed! Go to reservation page to check the detailed information. </h4>
+                            <h4> You reservation with room {this.props.slug} from {this.props.start_time} to {this.props.end_time} has been placed! Go to reservation page to check the detailed information. </h4>
                             <br/>
                             <h4> Do you want to receive the reservation information and the barcode to access the room by email?</h4>
                             <button onClick={()=>this.handleClick()}>Yes</button>

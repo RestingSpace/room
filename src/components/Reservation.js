@@ -22,7 +22,7 @@ export default class Reservation extends Component {
     componentDidMount() {
         console.log(localStorage.getItem('username'));
         console.log(this);
-        const getReservationURL = 'http://localhost:8080/reservations/jiuchao';
+        const getReservationURL = `http://localhost:8080/reservations/${localStorage.getItem('username')}`;
         const action = {
             method: 'GET',
             headers: {

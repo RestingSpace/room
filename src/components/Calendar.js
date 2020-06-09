@@ -62,15 +62,14 @@ class Calendar extends Component {
                         item["StartTime"] = start;
                         item["EndTime"] = end;
                         item["id"] = result.id;
-                        if(result["user"]["username"] !== this.props.username)
+                        if(result["user"]["username"] !== localStorage.getItem('username'))
                         {
-
                             item["IsBlock"] = true;
                             item["Subject"] = "Reserved by others";
                         }
                         else {
                             item["IsBlock"] = false;
-                            item["Subject"] = this.props.username;
+                            item["Subject"] = localStorage.getItem('username')
                         }
                         return item;
                     });
@@ -92,7 +91,7 @@ class Calendar extends Component {
         // const {username, isLogin} = context;
         // console.log(isLogin);
         let currentTime = new Date();
-        if(this.props.username === ' ')
+        if (localStorage.getItem('username') === null)
             alert('You must login to make reservations!');
         else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
             alert("You cannot make a reservation starting at a past time point!");
@@ -100,13 +99,10 @@ class Calendar extends Component {
             let data = ({
                 start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
                 end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
-                username: this.props.username,
+                slug:this.props.slug,
                 rid: this.props.rid
             });
-            console.log(`/checkout?start_time=${data.start_time}&end_time=${data.end_time}&username=${data.username}&rid=${data.rid}`);
-            if (this.props.username === null)
-                alert("Please login to make reservations!")
-            window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&username=${data.username}&rid=${data.rid}`;
+            window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&rid=${data.rid}&slug=${data.slug}`;
         }
         //console.log(this.scheduleObj.activeEventData);
         // console.log(this.scheduleObj);

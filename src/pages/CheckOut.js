@@ -13,7 +13,7 @@ class CheckOut extends Component {
             start_time:params.get("start_time"),
             end_time:params.get("end_time"),
             rid:params.get("rid"),
-            username:params.get("username")
+            slug:params.get("slug")
         }
     }
 
@@ -24,7 +24,7 @@ class CheckOut extends Component {
             <Navbar/>
             <Hero>
                 <Summary start_time = {this.state.start_time} end_time = {this.state.end_time}
-                         rid = {this.state.rid} username = {this.state.username}/>
+                         rid = {this.state.rid} slug = {this.state.slug}/>
             </Hero>
 
             </>
