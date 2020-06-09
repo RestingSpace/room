@@ -17,7 +17,8 @@ class Calendar extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            scheduleData:[]
+            scheduleData:[],
+            isRedirect: false
         };
     }
     static context = RoomContext;
@@ -86,71 +87,35 @@ class Calendar extends Component {
     }
 
     onAddClick() {
-        // const context = this.context;
-        // console.log(this.context);
-        // const {username, isLogin} = context;
-        // console.log(isLogin);
-        let currentTime = new Date();
-        if (localStorage.getItem('username') === null)
-            alert('You must login to make reservations!');
-        else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
-            alert("You cannot make a reservation starting at a past time point!");
-        else {
-            let data = ({
-                start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
-                end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
-                slug:this.props.slug,
-                rid: this.props.rid
-            });
-            window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&rid=${data.rid}&slug=${data.slug}`;
+        if (this.state.isRedirect)
+        {
+            let currentTime = new Date();
+            if (localStorage.getItem('username') === null)
+                alert('You must login to make reservations!');
+            else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
+                alert("You cannot make a reservation starting at a past time point!");
+            else {
+                //     let data = ({
+                //         start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
+                //         end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
+                //         slug:this.props.slug,
+                //         rid: this.props.rid
+                //     });
+                //     window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&rid=${data.rid}&slug=${data.slug}`;
+                // }
+                console.log(this.scheduleObj.activeEventData.event.StartTime);
+                return <Redirect to={{
+                    pathname: `/checkout`,
+                    state: {
+                        start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
+                        end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
+                        slug: this.props.slug,
+                        rid: this.props.rid
+                    }
+                }}
+                />
+            }
         }
-        //console.log(this.scheduleObj.activeEventData);
-        // console.log(this.scheduleObj);
-        // return <Redirect to={{
-        //     pathname:`/checkout`,
-        //     state:{
-        //         start_time: this.scheduleObj.activeCellsData.startTime,
-        //         end_time: this.scheduleObj.activeCellsData.endTime,
-        //         username: this.props.username,
-        //         rid:this.props.rid
-        //     }
-        // }}
-        // />
-        // console.log(this.scheduleObj.activeEventData.event);
-        // const URL = "http://localhost:8080/reserve";
-        // const requestOptions = {
-        //     method: "POST",
-        //     headers: {
-        //         "Content-Type": "application/json"
-        //         //'Authorization': document.cookie
-        //     },
-        //     //credentials: "include",
-        //     body: JSON.stringify({
-        //         start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
-        //         end_time: moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'),
-        //         username: this.props.username,
-        //         rid:this.props.rid
-        //     }),
-        //     "Access-Control-Allow-Origin": "*"
-        // };
-        // // console.log(moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'));
-        // // console.log(moment(this.scheduleObj.activeEventData.event.EndTime).format('YYYY-MM-DD HH:mm:ss'));
-        // fetch(URL, requestOptions).then(res => {
-        //     if (res.status === 200) {
-        //         console.log(res);
-        //         res.json().then((resp)=>{this.setState({reservationId: resp.id});});
-        //         alert("Reservation Succeeded!");
-        //         this.getReservationByRoom();
-        //         this.forceUpdate();
-        //     } else {
-        //         console.log(res.text());
-        //     }
-        // })
-        //     .catch(err => {
-        //         console.error(err);
-        //         alert("Error making reservations please try again");
-        //     });
-       // console.log(this.state.reservationId);
     }
 
     onDeleteClick(){
@@ -199,7 +164,8 @@ class Calendar extends Component {
     render() {
         return (
             <div>
-                <ButtonComponent id='add' title='Add' ref={t => this.buttonObj = t} onClick={this.onAddClick.bind(this)}>Reserve</ButtonComponent>
+                {this.onAddClick()}
+                <ButtonComponent id='add' title='Add' ref={t => this.buttonObj = t} onClick={()=>{this.setState({isRedirect: true}); this.onAddClick.bind(this)}}>Reserve</ButtonComponent>
                 <ButtonComponent id='delete' title='delete' ref={t => this.buttonObj = t} onClick={this.onDeleteClick.bind(this)}>Delete</ButtonComponent>
                 <ScheduleComponent ref={t => this.scheduleObj = t} width='100%' height='550px' eventSettings={{ dataSource: this.state.scheduleData }}>
                     <ViewsDirective>

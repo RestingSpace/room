@@ -90,7 +90,7 @@ class Auth extends Component {
                     toggleLogin(this.state.isLogin, this.state.username);
 
                 }
-                if (res.status == 403)
+                if (res.status == 401)
                     alert("You have not registered, please sign up first!");
             })
             .catch(err => {
@@ -219,12 +219,13 @@ class Auth extends Component {
                                             if (password !== confirmed_password) {
                                                 alert("Passwords don't match");
                                             }
-                                            this.register()
+                                            else
+                                                this.register()
                                         }}>Register</button>
                                     </div>
 
                                     <div>
-                                        <button onClick={() => this.setState({ isRegister: false })}>Back to Login</button>
+                                        <button onClick={() => this.setState({ isRegister: 1 })}>Back to Login</button>
                                     </div>
 
                                 </div>)
@@ -251,7 +252,7 @@ class Auth extends Component {
                                     </div>
 
                                     <div>
-                                        <button onClick={() => this.setState({ isRegister: true })}>New User? Register</button>
+                                        <button onClick={() => this.setState({ isRegister: 0 })}>New User? Register</button>
 
                                     </div>
 

@@ -15,7 +15,8 @@ export default class Reservation extends Component {
         futureRes: [],
         currentRes: [],
         pastRes: [],
-        reservationRoom: []
+        reservationRoom: [],
+        loading: true
     })
 
 
@@ -32,7 +33,7 @@ export default class Reservation extends Component {
         }
         fetch(getReservationURL, action)
             .then(res => {
-                //console.log(res);
+                this.setState({loading: false});
                 if (res.status === 200) {
                     console.log("success getting reservation");
                 }
@@ -89,7 +90,7 @@ export default class Reservation extends Component {
         console.log(currentRes);
         console.log(futureRes);
 
-        if (reservationRooms.length < 1) {
+        if (this.state.loading) {
             return <Loading></Loading>
         }
 
