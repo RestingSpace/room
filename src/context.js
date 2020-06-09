@@ -8,7 +8,7 @@ const RoomContext = React.createContext();
 class RoomProvider extends Component {
     state = {
         rooms: [],    //all rooms 
-        sortedRooms:[],     // filtered rooms passed to the RoomList, being changed due to filter
+        sortedRooms: [],     // filtered rooms passed to the RoomList, being changed due to filter
         featuredRooms: [],
         reservationRooms: [],
         loading: false,
@@ -19,8 +19,8 @@ class RoomProvider extends Component {
         maxPrice: 0,
         food: false,
         pets: false,
-        test:[],
-        username:' ',
+        test: [],
+        username: ' ',
         isLogin: false
     };
 
@@ -28,7 +28,7 @@ class RoomProvider extends Component {
 
     // getDate
 
-    getRooms(){
+    getRooms() {
         const getRoomsURL = 'http://localhost:8080/getAllRooms';
         const action = {
             method: 'GET',
@@ -40,13 +40,13 @@ class RoomProvider extends Component {
         fetch(getRoomsURL, action)
             .then(res => {
                 //console.log(res);
-                if(res.status === 200){
+                if (res.status === 200) {
                     console.log("success getting rooms");
                 }
-                else if(res.status === 403){
+                else if (res.status === 403) {
                     console.log("403 forbidden");
                 }
-                else{
+                else {
                     console.log("error getting rooms");
                 }
                 return res.json()
@@ -70,17 +70,18 @@ class RoomProvider extends Component {
             )
     }
 
-   
 
-    toggleLogin = (loginState,username) => {
+
+    toggleLogin = (loginState, username) => {
         this.setState({
             isLogin: loginState,
             username: username
         })
-        console.log(this.state.isLogin)
-        console.log(this.state.username)
+        console.log("togglelogin", loginState);
+        localStorage.setItem('rootState_isLogin', JSON.stringify(this.state.isLogin));
+        localStorage.setItem('rootState_username', JSON.stringify(this.state.username));
+       
     }
-
 
 
     getData = async () => {
@@ -89,20 +90,20 @@ class RoomProvider extends Component {
                 content_type: "room"
             });
             let rooms = this.formatData(response.items);
- 
-        let featuredRooms = rooms.filter(room => room.featured === true)
-        let maxPrice = Math.max(...rooms.map(item => item.price));
-        let maxSize = Math.max(...rooms.map(item => item.size));
 
-        this.setState({
-            rooms,
-            sortedRooms: rooms,
-            featuredRooms,
-            loading: false,
-            price: maxPrice,
-            maxPrice,
-            maxSize,
-        });
+            let featuredRooms = rooms.filter(room => room.featured === true)
+            let maxPrice = Math.max(...rooms.map(item => item.price));
+            let maxSize = Math.max(...rooms.map(item => item.size));
+
+            this.setState({
+                rooms,
+                sortedRooms: rooms,
+                featuredRooms,
+                loading: false,
+                price: maxPrice,
+                maxPrice,
+                maxSize,
+            });
         } catch (error) {
             console.log(error);
         }
@@ -112,18 +113,44 @@ class RoomProvider extends Component {
         this.getRooms();
         this.getData();
         this.getReservation();
+        console.log("context didmount");
+        const persistState_isLogin = localStorage.getItem('rootState_isLogin');
+        const persistState_username = localStorage.getItem('rootState_username');
+        console.log("context persist Didmount", persistState_isLogin, persistState_username)
+        //console.log(persistState);
+        if (persistState_isLogin) {
+            try {
+                this.setState({isLogin: JSON.parse(persistState_isLogin)});
+            } catch (e) {
+                // is not json
+            }
+        }
+        if (persistState_username) {
+            try {
+                this.setState({username: JSON.parse(persistState_username)});
+            } catch (e) {
+                // is not json
+            }
+        }
     }
 
-    componentDidUpdate() {
-        
+    saveStateToLocalStorage() {
+        localStorage.setItem('rootState_isLogin', JSON.stringify(this.state.isLogin));
+        localStorage.setItem('rootState_username', JSON.stringify(this.state.username));
     }
+
+    componentWillUnmount() {
+        console.log("I will unmount");
+        this.saveStateToLocalStorage();
+    }
+
 
     formatData(items) {
         let tempItems = items.map(item => {
             let id = item.sys.id
             let images = item.fields.images.map(image => image.fields.file.url)
-            let room = {...item.fields,images,id}
-            
+            let room = { ...item.fields, images, id }
+
             return room;
         });
         return tempItems;
@@ -139,15 +166,15 @@ class RoomProvider extends Component {
         const target = event.target;
         const value = target.type === 'checkbox' ? target.checked : target.value;
         const name = target.name;
-        this.setState({[name]:value}, this.filterRooms);
+        this.setState({ [name]: value }, this.filterRooms);
 
     };
-    
+
     filterRooms = () => {
-        let{
+        let {
             rooms, type, capacity, price, minPrice, maxPrice, minSize, maxSize, food, pets
         } = this.state
-        
+
         // all the rooms
         let tempRooms = [...rooms];
 
@@ -183,7 +210,7 @@ class RoomProvider extends Component {
 
         // change state
         this.setState({
-            sortedRooms:tempRooms
+            sortedRooms: tempRooms
         });
     };
 
@@ -199,13 +226,13 @@ class RoomProvider extends Component {
         fetch(getReservationURL, action)
             .then(res => {
                 //console.log(res);
-                if(res.status === 200){
+                if (res.status === 200) {
                     console.log("success getting reservation");
                 }
-                else if(res.status === 403){
+                else if (res.status === 403) {
                     console.log("403 forbidden");
                 }
-                else{
+                else {
                     console.log("error getting reservation");
                     return;
                 }
@@ -218,7 +245,7 @@ class RoomProvider extends Component {
                     // });
                     console.log(result);
                     return result;
-                    
+
                 },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -233,14 +260,15 @@ class RoomProvider extends Component {
     }
 
     render() {
+        console.log(this.state.isLogin);
         return (
             <RoomContext.Provider value={{
                 ...this.state,
-                getRoom:this.getRoom,
+                getRoom: this.getRoom,
                 handleChange: this.handleChange,
                 toggleLogin: (e, f) => this.toggleLogin(e, f),
                 getReservation: this.getReservation
-                }}>
+            }}>
                 {this.props.children}
             </RoomContext.Provider>
         );
@@ -251,15 +279,15 @@ class RoomProvider extends Component {
 
 const RoomConsumer = RoomContext.Consumer;
 
-export {RoomProvider, RoomConsumer, RoomContext};
+export { RoomProvider, RoomConsumer, RoomContext };
 
 export function withRoomConsumer(Component) {
     return function ConsumerWrapper(props) {
         return (
             <RoomConsumer>
-            {value => <Component {...props} context = {value}/> }
+                {value => <Component {...props} context={value} />}
             </RoomConsumer>
-            );
+        );
     };
 }
 

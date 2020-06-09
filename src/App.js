@@ -12,12 +12,15 @@ import {Route, Switch} from "react-router-dom";
 
 import Navbar from "./components/Navbar";
 import CheckOut from "./pages/CheckOut"
-
+import LogOut from"./pages/LogOut";
 
 function App() {
+
   return (
+    
   <>
     <Navbar />
+    {console.log("jere")}
     <Switch>
       <Route exact path="/" component={Home} />
       <Route exact path="/rooms/" component={Rooms} />
@@ -26,6 +29,7 @@ function App() {
       <Route exact path="/login" component={Login} />
       <Route exact path="/register" component={Register} />
       <Route exact path="/checkout" component={CheckOut} />
+      <Route exact path="/logout" component={LogOut} />
       <Route component={Error} />
     </Switch>
   </>

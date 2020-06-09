@@ -4,15 +4,11 @@ import Auth from '../components/Auth'
 const Login = () => {
     return (
         <>
-
-        <div>
-
-        </div>
-        <Hero>
-            <Auth isRegister={false}/>
-        </Hero>
+            <Hero>
+                <Auth isRegister={1} />
+            </Hero>
         </>
-        
+
     )
 }
 export default Login;
