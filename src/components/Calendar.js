@@ -55,12 +55,16 @@ class Calendar extends Component {
                         item["id"] = result.id;
                         let start = new Date(result.start_time);
                         let end = new Date(result.end_time);
+                        if(start - new Date() < 0)
+                            item["IsReadonly"] = true;
+                        else
+                            item["IsReadonly"] = false;
                         item["StartTime"] = start;
                         item["EndTime"] = end;
                         item["id"] = result.id;
                         if(result["user"]["username"] !== this.props.username)
                         {
-                            //item["IsReadonly"] = true;
+
                             item["IsBlock"] = true;
                             item["Subject"] = "Reserved by others";
                         }
@@ -87,8 +91,11 @@ class Calendar extends Component {
         // console.log(this.context);
         // const {username, isLogin} = context;
         // console.log(isLogin);
+        let currentTime = new Date();
         if(this.props.username === ' ')
             alert('You must login to make reservations!');
+        else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
+            alert("You cannot make a reservation starting at a past time point!");
         else {
             let data = ({
                 start_time: moment(this.scheduleObj.activeEventData.event.StartTime).format('YYYY-MM-DD HH:mm:ss'),
@@ -151,34 +158,41 @@ class Calendar extends Component {
     }
 
     onDeleteClick(){
-        //console.log(this.scheduleObj.activeEventData.event.id);
-        const URL = `http://localhost:8080/cancelReserve/${this.scheduleObj.activeEventData.event.id}`;
-        const requestOptions = {
-            method: "DELETE",
-            headers: {
-                "Content-Type": "application/json"
-                //'Authorization': document.cookie
-            },
-            //credentials: "include",
-            body: JSON.stringify({
-                id:this.scheduleObj.activeEventData.event.id
-            }),
-            "Access-Control-Allow-Origin": "*"
-        };
-        fetch(URL, requestOptions).then(res => {
-            if (res.status === 200) {
-                console.log(res);
-                alert("Reservation Deleted!")
-                this.getReservationByRoom();
-                this.forceUpdate();
-            } else {
-                console.log(res.text());
-            }
-        })
-            .catch(err => {
-                console.error(err);
-                alert("Error deleting the reservation please try again");
-            });
+        let currentTime = new Date();
+        if(this.scheduleObj.activeEventData.event.EndTime - currentTime < 0)
+            alert("You cannot delete a past reservation!")
+        else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
+            alert("You cannot delete an ongoing reservation!");
+        else {
+            //console.log(this.scheduleObj.activeEventData.event.id);
+            const URL = `http://localhost:8080/cancelReserve/${this.scheduleObj.activeEventData.event.id}`;
+            const requestOptions = {
+                method: "DELETE",
+                headers: {
+                    "Content-Type": "application/json"
+                    //'Authorization': document.cookie
+                },
+                //credentials: "include",
+                body: JSON.stringify({
+                    id: this.scheduleObj.activeEventData.event.id
+                }),
+                "Access-Control-Allow-Origin": "*"
+            };
+            fetch(URL, requestOptions).then(res => {
+                if (res.status === 200) {
+                    console.log(res);
+                    alert("Reservation Deleted!")
+                    this.getReservationByRoom();
+                    this.forceUpdate();
+                } else {
+                    console.log(res.text());
+                }
+            })
+                .catch(err => {
+                    console.error(err);
+                    alert("Error deleting the reservation please try again");
+                });
+        }
     }
 
      componentDidMount() {
