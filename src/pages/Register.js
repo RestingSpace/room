@@ -4,15 +4,11 @@ import Auth from '../components/Auth'
 const Register = () => {
     return (
         <>
-
-        <div>
-
-        </div>
-        <Hero>
-            <Auth isRegister={true}/>
-        </Hero>
+            <Hero>
+                <Auth isRegister={0} />
+            </Hero>
         </>
-        
+
     )
 }
 export default Register;
