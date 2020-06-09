@@ -36,6 +36,7 @@ export default class Reservation extends Component {
                 this.setState({loading: false});
                 if (res.status === 200) {
                     console.log("success getting reservation");
+                    //res.sort((a,b)=>new Date(a.start_time) - new Date(b.start_time));
                 }
                 else if (res.status === 403) {
                     console.log("403 forbidden");
@@ -47,6 +48,7 @@ export default class Reservation extends Component {
                 return res.json()
             })
             .then((result) => {
+                result.sort((a,b)=>new Date(a.start_time) - new Date(b.start_time));
                 this.setState({
                     reservationRoom: result
                 })
