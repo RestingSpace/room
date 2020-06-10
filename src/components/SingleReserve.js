@@ -30,7 +30,8 @@ class SingleReserve extends Component {
     }
 
     fetchCancelReserve = () => {
-        const { id } = this.props.room;
+        const { start_time, end_time, totalPrice, room, id} = this.props.reservation;
+    
         var params = id;
         const cancelReservationURL = `http://localhost:8080/cancelReserve/${id}`;
         const action = {
