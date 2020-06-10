@@ -25,6 +25,7 @@ class Calendar extends Component {
 
     getReservationByRoom(){
         const getRoomReservationRL = `http://localhost:8080/reservationsbyRoom/${this.props.rid}`;
+        console.log(this.props.rid);
         const action = {
             method: 'GET',
             headers: {
@@ -105,7 +106,7 @@ class Calendar extends Component {
                 //     });
                 //     window.location = `/checkout?start_time=${data.start_time}&end_time=${data.end_time}&rid=${data.rid}&slug=${data.slug}`;
                 // }
-                console.log(this.scheduleObj.activeEventData.event.StartTime);
+                console.log(this.scheduleObj.activeEventData.event);
                 return <Redirect to={{
                     pathname: `/checkout`,
                     state: {
@@ -122,6 +123,7 @@ class Calendar extends Component {
 
     onDeleteClick(){
         let currentTime = new Date();
+        
         if(this.scheduleObj.activeEventData.event.EndTime - currentTime < 0)
             alert("You cannot delete a past reservation!")
         else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)

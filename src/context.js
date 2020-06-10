@@ -265,7 +265,7 @@ class RoomProvider extends Component {
         return (
             <RoomContext.Provider value={{
                 ...this.state,
-                getRoom: this.getRoom,
+                getRoom: (e) => this.getRoom(e),
                 handleChange: this.handleChange,
                 toggleLogin: (e, f) => this.toggleLogin(e, f),
                 getReservation: this.getReservation

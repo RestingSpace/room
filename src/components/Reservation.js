@@ -31,7 +31,7 @@ export default class Reservation extends Component {
 
 
     componentDidMount() {
-        console.log("reservation did mount ");
+        
         const getReservationURL = `http://localhost:8080/reservations/${localStorage.getItem('username')}`;
         const action = {
             method: 'GET',
@@ -73,6 +73,7 @@ export default class Reservation extends Component {
                     });
                 }
             )
+            console.log(this.state.reservationRoom);
     
     }
 
@@ -88,8 +89,10 @@ export default class Reservation extends Component {
     }
 
     render() {
+        
+        const {getRoom} = this.context;
         let{futureRes, currentRes, pastRes, reservationRoom} = this.state;
-        console.log(reservationRoom);
+        console.log(getRoom("single meditation"));
         let reservationRooms = reservationRoom;
         let now_time = moment();
         reservationRooms.map((room) => {
@@ -122,7 +125,7 @@ export default class Reservation extends Component {
                         <h4>Ongoing Reservation</h4>
                         {
                             currentRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="current" action={this.handleReservationChange}/>;
+                                return <SingleReserve key={item.id} reservation={item} condition="current" action={this.handleReservationChange}/>;
                             })}
                     </div>
 
@@ -130,7 +133,7 @@ export default class Reservation extends Component {
                         <h4>Future Reservation</h4>
                         {
                             futureRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="future" action={this.handleReservationChange}/>;
+                                return <SingleReserve key={item.id} reservation={item} condition="future" action={this.handleReservationChange}/>;
                             })}
                     </div>
 
@@ -139,7 +142,7 @@ export default class Reservation extends Component {
 
                         {
                             pastRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="past" action={this.handleReservationChange}/>;
+                                return <SingleReserve key={item.id} reservation={item} condition="past" action={this.handleReservationChange}/>;
                             })}
                     </div>
                 </div>

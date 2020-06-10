@@ -1,15 +1,32 @@
 import React, { Component } from 'react'
 import Room from './Room'
 import CountDown from './CountDown'
+import { RoomContext } from '../context'
 
 
 class SingleReserve extends Component {
+    static contextType = RoomContext;
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
-        this.state = {
-            
-        };
+    }
+
+    getImageRoomByLocation(location) {
+        const {getRoom} = this.context;
+        const room = getRoom("double-meditation");
+        console.log(room);
+        
+
+        if (location === "NY") {
+            return getRoom("double-meditation");
+        }
+        if (location === "LA") {
+            return getRoom("single-meditation");
+        }
+        if (location === "SF") {
+            return getRoom("single-study");
+        }
+        
     }
 
     fetchCancelReserve = () => {
@@ -66,14 +83,17 @@ class SingleReserve extends Component {
         }
     }
 
+
     render() {
-        const { start_time, end_time, totalPrice } = this.props.room;
+        const { start_time, end_time, totalPrice, room, id} = this.props.reservation;
         const condition = this.props.condition;
-        console.log(condition);
+        console.log("Start", start_time);
+        console.log(room.location);
+        console.log(this.getImageRoomByLocation(room.location));
         return (
             <div className='horizontal-box'>
                 <section className='reserve-image'>
-                    <Room key={this.props.room.id} room={this.props.room}></Room>
+                    <Room key={id} room={this.getImageRoomByLocation(room.location)}></Room>
                 </section>
                 <section className='reserve-info'>
                     <div className='reserve-text'>
@@ -117,5 +137,5 @@ class SingleReserve extends Component {
 
 }
 
-
+SingleReserve.contextType = RoomContext;
 export default SingleReserve;

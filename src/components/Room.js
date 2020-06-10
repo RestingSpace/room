@@ -24,6 +24,7 @@ export default function Room({room}) {
             </article>
 
         )
+        //images[0] || 
     
     
 }
