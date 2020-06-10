@@ -10,6 +10,8 @@ npm install moment<br />
 npm install contentful<br />
 npm install react-moment-proptypes<br />
 npm install react-moment-countdown<br />
+npm install react-modal<br />
+npm install -g qrcode<br />
 
 ## Available Scripts
 
