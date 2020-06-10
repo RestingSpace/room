@@ -10,6 +10,7 @@ import room2 from '../images/room-2.jpeg'
 export default function Hero({children, hero}) {
     return <header className={hero}>
             {children}
+  
         </header>
     
 }

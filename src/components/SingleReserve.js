@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import Room from './Room'
 import CountDown from './CountDown'
 import { RoomContext } from '../context'
-
+import PopUpQRCode from './PopUpQRCode'
 
 class SingleReserve extends Component {
     static contextType = RoomContext;
@@ -130,6 +130,14 @@ class SingleReserve extends Component {
                                 <CountDown futureTime={end_time} handleTimeUp={() => this.handleTimeUp()}></CountDown>
                                 :
                                 <div></div>
+                        }
+
+                        {
+                            condition == "future"
+                            ?
+                            <PopUpQRCode></PopUpQRCode>
+                            :
+                            null
                         }
                     </div>
 

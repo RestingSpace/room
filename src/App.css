@@ -69,6 +69,11 @@ h6 {
 .btn-primary:hover {
   background: transparent;
   color: var(--restingBlue);
+  align-content: center;
+}
+.btn-reserve {
+  background: white;
+  width: 177px;
 }
 .loading {
   text-transform: capitalize;
