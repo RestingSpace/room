@@ -88,7 +88,7 @@ class Summary extends Component {
             if (res.status === 200) {
                 console.log(res);
                 alert("Email sent!");
-                window.location = `/reserve`;
+                window.location = `/rooms/${this.props.slug}`;
             } else {
                 console.log(res.text());
             }
@@ -99,7 +99,7 @@ class Summary extends Component {
             });
     }
     redirect(){
-        window.location = `/reserve`;
+        window.location = `/rooms/${this.props.slug}`;
     }
 
 
@@ -169,7 +169,7 @@ class Summary extends Component {
                             <h1>Thanks for your order!</h1>
                             <h4> You reservation with room {this.props.slug} from {this.props.start_time} to {this.props.end_time} has been placed! Go to reservation page to check the detailed information. </h4>
                             <br/>
-                            <h4> Do you want to receive the reservation information and the barcode to access the room by email?</h4>
+                            <h4> Do you want to receive the reservation information and the QR code for accessing the room by email?</h4>
                             <button onClick={()=>this.handleClick()}>Yes</button>
                             <button onClick = {()=>this.redirect()}>No</button>
 
