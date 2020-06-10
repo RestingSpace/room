@@ -9,20 +9,29 @@ import { RoomContext } from '../context'
 import { render } from '@testing-library/react';
 
 export default class Reservation extends Component {
+    
     static contextType = RoomContext;
-
-    state = ({
-        futureRes: [],
-        currentRes: [],
-        pastRes: [],
-        reservationRoom: [],
-        loading: true
-    })
+    constructor(props) {
+        super(props)
+        //function passed to child component 
+        this.handleReservationChange = this.handleReservationChange.bind(this);
+        this.state = ({
+            futureRes: [],
+            currentRes: [],
+            pastRes: [],
+            reservationRoom: [],
+            loading: true,
+            reRender: true
+            
+     
+        })
+        console.log(this);
+    }
+    
 
 
     componentDidMount() {
-        console.log(localStorage.getItem('username'));
-        console.log(this);
+        
         const getReservationURL = `http://localhost:8080/reservations/${localStorage.getItem('username')}`;
         const action = {
             method: 'GET',
@@ -52,6 +61,7 @@ export default class Reservation extends Component {
                 this.setState({
                     reservationRoom: result
                 })
+                
             },
                 // Note: it's important to handle errors here
                 // instead of a catch() block so that we don't swallow
@@ -63,14 +73,26 @@ export default class Reservation extends Component {
                     });
                 }
             )
+            console.log(this.state.reservationRoom);
     
     }
 
 
+    handleReservationChange() {
+        console.log("force update");
+        console.log(this);
+        //this.setState({reRender: !this.state.reRender});
+        console.log("rerender", this.state.reRender);
+        //this.forceUpdate();
+        this.componentDidMount();
+     
+    }
 
     render() {
+        
+        const {getRoom} = this.context;
         let{futureRes, currentRes, pastRes, reservationRoom} = this.state;
-        console.log(reservationRoom);
+        console.log(getRoom("single meditation"));
         let reservationRooms = reservationRoom;
         let now_time = moment();
         reservationRooms.map((room) => {
@@ -103,7 +125,7 @@ export default class Reservation extends Component {
                         <h4>Ongoing Reservation</h4>
                         {
                             currentRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="current" />;
+                                return <SingleReserve key={item.id} reservation={item} condition="current" action={this.handleReservationChange}/>;
                             })}
                     </div>
 
@@ -111,7 +133,7 @@ export default class Reservation extends Component {
                         <h4>Future Reservation</h4>
                         {
                             futureRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="future" />;
+                                return <SingleReserve key={item.id} reservation={item} condition="future" action={this.handleReservationChange}/>;
                             })}
                     </div>
 
@@ -120,7 +142,7 @@ export default class Reservation extends Component {
 
                         {
                             pastRes.map(item => {
-                                return <SingleReserve key={item.id} room={item} condition="past" />;
+                                return <SingleReserve key={item.id} reservation={item} condition="past" action={this.handleReservationChange}/>;
                             })}
                     </div>
                 </div>

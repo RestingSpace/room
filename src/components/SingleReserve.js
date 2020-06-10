@@ -1,15 +1,39 @@
 import React, { Component } from 'react'
 import Room from './Room'
 import CountDown from './CountDown'
+import { RoomContext } from '../context'
 
 
-export default function SingleReserve({ room, condition }) {
-    const { start_time, end_time, totalPrice, id } = room
+class SingleReserve extends Component {
+    static contextType = RoomContext;
+    constructor(props) {
+        super(props);
+        this.handleClick = this.handleClick.bind(this);
+    }
 
-    let handleChange = () => {
-        var params = {id}; 
-        const cancelReservationURL = `http://localhost:8080/cancelReserve/${params.toString()}`;
+    getImageRoomByLocation(location) {
+        const {getRoom} = this.context;
+        const room = getRoom("double-meditation");
+        console.log(room);
         
+
+        if (location === "NY") {
+            return getRoom("double-meditation");
+        }
+        if (location === "LA") {
+            return getRoom("single-meditation");
+        }
+        if (location === "SF") {
+            return getRoom("single-study");
+        }
+        
+    }
+
+    fetchCancelReserve = () => {
+        const { start_time, end_time, totalPrice, room, id} = this.props.reservation;
+    
+        var params = id;
+        const cancelReservationURL = `http://localhost:8080/cancelReserve/${id}`;
         const action = {
             method: 'DELETE',
             headers: {
@@ -22,6 +46,7 @@ export default function SingleReserve({ room, condition }) {
                 //console.log(res);
                 if (res.status === 200) {
                     console.log("success CANCEL reservation");
+                    this.props.action();
                 }
                 else if (res.status === 403) {
                     console.log("403 forbidden");
@@ -33,63 +58,85 @@ export default function SingleReserve({ room, condition }) {
                 return res.json()
             })
             .then((result) => {
+                console.log("cancel ress");
+                
             },
-                // Note: it's important to handle errors here
-                // instead of a catch() block so that we don't swallow
-                // exceptions from actual bugs in components.
                 (error) => {
-                    this.setState({
-                        isLoaded: true,
-                        error
-                    });
+                    // this.setState({
+                    //     isLoaded: true,
+                    //     error
+                    // });
                 }
             )
+        /*******end of */
     }
 
-    return (
-        <div className='horizontal-box'>
-            <section className='reserve-image'>
-                <Room key={room.id} room={room}></Room>
-            </section>
-            <section className='reserve-info'>
-                <div className='reserve-text'>
-                    <h5>
-                        start time: {start_time}
-                    </h5>
-                    <h5>
-                        end time: {end_time}
-                    </h5>
-                    <h5>
-                        price: {totalPrice} $
-                    </h5>
-                </div>
+    handleClick() {
+        const { handleReservationChange } = this.props.action;
+        if (window.confirm("Do you want to cancel this reservation?")) {
+            //call cancelorder
+            this.fetchCancelReserve();
+            console.log("ok");
+            
+        } else {
+            console.log("You pressed Cancel!");
+            //this.props.action();
+        }
+    }
 
-                <div className='reserve-rest'>
-                    {
-                        condition == "future"
-                            ?
-                            <button className='btn-primary' >
-                                cancel order
+
+    render() {
+        const { start_time, end_time, totalPrice, room, id} = this.props.reservation;
+        const condition = this.props.condition;
+        console.log("Start", start_time);
+        console.log(room.location);
+        console.log(this.getImageRoomByLocation(room.location));
+        return (
+            <div className='horizontal-box'>
+                <section className='reserve-image'>
+                    <Room key={id} room={this.getImageRoomByLocation(room.location)}></Room>
+                </section>
+                <section className='reserve-info'>
+                    <div className='reserve-text'>
+                        <h5>
+                            start time: {start_time}
+                        </h5>
+                        <h5>
+                            end time: {end_time}
+                        </h5>
+                        <h5>
+                            price: {totalPrice} $
+                    </h5>
+                    </div>
+
+                    <div className='reserve-rest'>
+                        {
+                            condition == "future"
+                                ?
+                                <button className='btn-primary' onClick={this.handleClick}>
+                                    cancel order
                         </button>
-                            :
-                            <div></div>
-                    }
+                                :
+                                <div></div>
+                        }
 
-                    {
-                        condition == "current"
-                            ?
-                            <CountDown futureTime={end_time}></CountDown>
-                            :
-                            <div></div>
-                    }
-                </div>
+                        {
+                            condition == "current"
+                                ?
+                                <CountDown futureTime={end_time}></CountDown>
+                                :
+                                <div></div>
+                        }
+                    </div>
 
-            </section>
+                </section>
 
-        </div>
-    )
+            </div>
+        )
+    }
 
 
 }
 
-
+SingleReserve.contextType = RoomContext;
+export default SingleReserve;
