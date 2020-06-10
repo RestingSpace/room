@@ -90,7 +90,9 @@ class Calendar extends Component {
         if (this.state.isRedirect)
         {
             let currentTime = new Date();
-            if (localStorage.getItem('username') === null)
+            if(!this.scheduleObj.activeEventData.event)
+                alert("Please create and select an event on calendar to make a reservation!")
+            else if (localStorage.getItem('username') === null)
                 alert('You must login to make reservations!');
             else if(this.scheduleObj.activeEventData.event.StartTime - currentTime < 0)
                 alert("You cannot make a reservation starting at a past time point!");

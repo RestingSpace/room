@@ -7,9 +7,9 @@ npm install @syncfusion/ej2-react-buttons<br />
 
 npm install - -save styled-components<br />
 npm install moment<br />
-npm install contentful
-npm install react-moment-proptypes
-npm install react-moment-countdown
+npm install contentful<br />
+npm install react-moment-proptypes<br />
+npm install react-moment-countdown<br />
 
 ## Available Scripts
 
