@@ -1,55 +1,58 @@
 import React from 'react';
 import ReactMomentCountDown from 'react-moment-countdown';
 import moment from 'moment';
- 
-//    export default function CountDown ({futureTime}) {
-//     const then = moment(futureTime);
-//     const now = moment();
-//     const countdown = moment(then - now);
-//     console.log(countdown);
-//     const days = countdown.format('D');
-//     const hours = countdown.format('HH');
-//     const minutes = countdown.format('mm');
-//     const seconds = countdown.format('ss');
 
 
-
-
-//     let now_time = moment();
-//     const dateInFuture = new Date('2020-06-08');
-//     console.log(dateInFuture);
-     
-//      return (
-//        <ReactMomentCountDown toDate={dateInFuture} sourceFormatMask='YYYY-MM-DD HH:mm:ss'/>
-//      );
-//    };
-
-
-   class Countdown extends React.Component {
+class Countdown extends React.Component {
     constructor(props) {
         super(props);
-     
+
         this.state = {
             days: undefined,
             hours: undefined,
             minutes: undefined,
             seconds: undefined
         };
-      }
-      
+    }
+
     componentDidMount() {
         this.interval = setInterval(() => {
-            let futureTime = this.props;
-            let futureTimeValid = moment(futureTime);
-            
-            const now = moment();
-            const countdown = moment(futureTimeValid - now);
+            let futureTime = this.props.futureTime;
+            let handleTimeUp = this.props.handleTimeUp;
+            //console.log(futureTime);
+
+
+            var eventTime = moment(futureTime);
+            //2020-06-10 21:00:00
+            //var eventTime = moment("2020-06-10 14:43:09");
+            var currentTime = new Date().getTime();
+
+            // console.log(eventTime);
+            // console.log(currentTime);
+
+            var diffTime = eventTime - currentTime;
+            var countdown = moment.duration(diffTime, 'milliseconds');
             //console.log(countdown);
-            const days = countdown.format('D');
-            const hours = countdown.format('HH');
-            const minutes = countdown.format('mm');
-            const seconds = countdown.format('ss');
+
+            const days = countdown._data.days;
+            const hours = countdown._data.hours;
+            const minutes = countdown._data.minutes;
+            const seconds = countdown._data.seconds;
+
             this.setState({ days, hours, minutes, seconds });
+            if (diffTime < 0) {
+                var result = window.confirm("Times up!");
+
+                if (result) {
+                    // the user clicked ok
+                    console.log("click ok time up");
+                    clearInterval(this.interval);
+                    this.props.handleTimeUp();
+
+                } else {
+                    // the user clicked cancel or closed the confirm dialog.
+                }
+            }
         }, 1000);
     }
 

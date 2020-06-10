@@ -9,12 +9,13 @@ class SingleReserve extends Component {
     constructor(props) {
         super(props);
         this.handleClick = this.handleClick.bind(this);
+        this.handleTimeUp = this.handleTimeUp.bind(this);
     }
 
     getImageRoomByLocation(location) {
         const {getRoom} = this.context;
         const room = getRoom("double-meditation");
-        console.log(room);
+        //console.log(room);
         
 
         if (location === "NY") {
@@ -84,13 +85,16 @@ class SingleReserve extends Component {
         }
     }
 
+    handleTimeUp(){
+        console.log("hanlde")
+        this.props.action();
+    }
+
 
     render() {
         const { start_time, end_time, totalPrice, room, id} = this.props.reservation;
         const condition = this.props.condition;
-        console.log("Start", start_time);
-        console.log(room.location);
-        console.log(this.getImageRoomByLocation(room.location));
+        
         return (
             <div className='horizontal-box'>
                 <section className='reserve-image'>
@@ -123,7 +127,7 @@ class SingleReserve extends Component {
                         {
                             condition == "current"
                                 ?
-                                <CountDown futureTime={end_time}></CountDown>
+                                <CountDown futureTime={end_time} handleTimeUp={() => this.handleTimeUp()}></CountDown>
                                 :
                                 <div></div>
                         }

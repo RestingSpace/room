@@ -73,16 +73,15 @@ export default class Reservation extends Component {
                     });
                 }
             )
-            console.log(this.state.reservationRoom);
+
     
     }
 
 
     handleReservationChange() {
         console.log("force update");
-        console.log(this);
+
         //this.setState({reRender: !this.state.reRender});
-        console.log("rerender", this.state.reRender);
         //this.forceUpdate();
         this.componentDidMount();
      
@@ -92,7 +91,6 @@ export default class Reservation extends Component {
         
         const {getRoom} = this.context;
         let{futureRes, currentRes, pastRes, reservationRoom} = this.state;
-        console.log(getRoom("single meditation"));
         let reservationRooms = reservationRoom;
         let now_time = moment();
         reservationRooms.map((room) => {
@@ -110,9 +108,9 @@ export default class Reservation extends Component {
             }
         })
 
-        console.log(pastRes);
-        console.log(currentRes);
-        console.log(futureRes);
+        // console.log(pastRes);
+        // console.log(currentRes);
+        // console.log(futureRes);
 
         if (this.state.loading) {
             return <Loading></Loading>
