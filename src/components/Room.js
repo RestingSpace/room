@@ -5,6 +5,7 @@ import {Link} from 'react-router-dom'
 export default function Room({room}) {
     //console.log(room);
     const {name, slug, roomImageURL, capacity, price, id} = room;
+    console.log(id);
     //console.log(images[0]);
         return (
             <article className="room">
