@@ -1,5 +1,5 @@
 ## Design of The System
-<img width="250" height="250" src="https://github.com/RestingSpace/room/blob/master/demo/front_end_design.png">
+<img src="https://github.com/RestingSpace/room/blob/master/demo/front_end_design.png">
 
 
 ## Before you start
