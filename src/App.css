@@ -556,7 +556,7 @@ h6 {
   padding: 0.5rem;
 }
 
- .login button{
+ .login button {
   height: 2rem;
   width: 15rem;
   display: inline-block;
@@ -607,6 +607,26 @@ h6 {
   padding: 0.5rem;
 }
 
+.calendar .primary {
+  height: 2rem;
+  width: 8rem;
+  display: inline-block;
+  letter-spacing: var(--mainSpacing);
+  background:var(--primaryColor);
+  padding: 0.4rem 0.9rem;
+  border: 3px solid var(--primaryColor);
+  color: var(--restingBlue);
+  margin:0.5rem;
+  font-weight: bold;
+  transition: var(--mainTransition);
+  text-transform: uppercase;
+  cursor: pointer;
+}
+.calendar button:hover, .checkout button:hover{
+  background: transparent;
+  color: var(--primaryColor);
+
+}
 /* end of rooms fitler*/
 
 /* start of reservation*/

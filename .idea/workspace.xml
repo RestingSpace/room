@@ -20,9 +20,10 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="e5910670-26e1-4781-b923-f99093488d8d" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/src/components/Contact.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Room.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Room.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/components/Summary.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Summary.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/App.css" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/components/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/components/Calendar.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -106,6 +107,7 @@
       <workItem from="1591745109171" duration="1193000" />
       <workItem from="1591749751110" duration="608000" />
       <workItem from="1591750656323" duration="1251000" />
+      <workItem from="1591828502348" duration="4850000" />
     </task>
     <servers />
   </component>
@@ -137,6 +139,10 @@
       <screen x="0" y="0" width="1368" height="872" />
     </state>
     <state x="343" y="200" key="run.anything.popup/0.0.1368.872/2736.0.1920.1040@0.0.1368.872" timestamp="1591707551533" />
+    <state x="343" y="91" width="670" height="676" key="search.everywhere.popup" timestamp="1591836075849">
+      <screen x="0" y="0" width="1368" height="872" />
+    </state>
+    <state x="343" y="91" width="670" height="676" key="search.everywhere.popup/0.0.1368.872/2736.0.1920.1040@0.0.1368.872" timestamp="1591836075849" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

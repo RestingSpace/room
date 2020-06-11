@@ -167,10 +167,10 @@ class Calendar extends Component {
 
     render() {
         return (
-            <div>
+            <div className="calendar">
                 {this.onAddClick()}
-                <ButtonComponent id='add' title='Add' ref={t => this.buttonObj = t} onClick={()=>{this.setState({isRedirect: true}); this.onAddClick.bind(this)}}>Reserve</ButtonComponent>
-                <ButtonComponent id='delete' title='delete' ref={t => this.buttonObj = t} onClick={this.onDeleteClick.bind(this)}>Delete</ButtonComponent>
+                <button className = "primary" title='reserve' ref={t => this.buttonObj = t} onClick={()=>{this.setState({isRedirect: true}); this.onAddClick.bind(this)}}>Reserve</button>
+                <button className = "primary" title='delete' ref={t => this.buttonObj = t} onClick={this.onDeleteClick.bind(this)}>Delete</button>
                 <ScheduleComponent ref={t => this.scheduleObj = t} width='100%' height='550px' eventSettings={{ dataSource: this.state.scheduleData }}>
                     <ViewsDirective>
                         <ViewDirective option='Day'/>
