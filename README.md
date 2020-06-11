@@ -1,10 +1,11 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Design of The System
+<img width="250" height="250" src="https://github.com/RestingSpace/room/blob/master/demo/front_end_design.png">
+
 
 ## Before you start
 npm install react-router-dom<br />
 npm install @syncfusion/ej2-react-schedule -- save<br/>
 npm install @syncfusion/ej2-react-buttons<br />
-
 npm install - -save styled-components<br />
 npm install moment<br />
 npm install contentful<br />
