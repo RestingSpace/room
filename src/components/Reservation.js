@@ -74,7 +74,6 @@ export default class Reservation extends Component {
                 }
             )
 
-    
     }
 
 
@@ -110,7 +109,7 @@ export default class Reservation extends Component {
 
         // console.log(pastRes);
         // console.log(currentRes);
-        // console.log(futureRes);
+        console.log("future reservation", futureRes);
 
         if (this.state.loading) {
             return <Loading></Loading>
