@@ -133,9 +133,9 @@ class SingleReserve extends Component {
                         }
 
                         {
-                            condition == "future"
+                            condition !== "past"
                             ?
-                            <PopUpQRCode></PopUpQRCode>
+                            <PopUpQRCode reservationid={id}></PopUpQRCode>
                             :
                             null
                         }

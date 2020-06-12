@@ -1,48 +1,65 @@
 import React, { Component } from 'react'
 import QRCode from 'qrcode'
+import axios from 'axios';
+import Loading from './Loading'
 
-// export default function QRCodeDisplay() {
-
-
-//   return (
-//     <>
-
-//       <QRCode
-//         level="Q"
-//         style={{ width: 256, marginBottom: 50 }}
-//         value={'hello world'}
-//       />
-
-//     </>
-
-//   )
-// }
 
 export default class QRCodeDisplay extends Component {
   constructor(props) {
     super(props);
-    this.generateQR = this.generateQR.bind(this);
+    
+    this.state = {
+      source: null,
+      isLoaded: true,
+
+    }
+
+
   }
 
-  generateQR(){
-    let str = 'My first QR code!'
-    QRCode.toCanvas(document.getElementById('canvas'), str, function (error) {
-      if (error) console.error(error)
-      console.log('success generated!')
-    })
+  fetchQRCode = () => {    //memory leak error when there is no () => 
+    const { reserveid } = this.props;
+
+    axios
+      .get(
+        `http://localhost:8080/send-email/${reserveid}`,
+        { responseType: 'arraybuffer' },
+      )
+      .then(response => {
+        this.setState({
+          isLoaded: false,
+        });
+        const base64 = btoa(
+          new Uint8Array(response.data).reduce(
+            (data, byte) => data + String.fromCharCode(byte),
+            '',
+          ),
+        );
+        this.setState({ source: "data:;base64," + base64 });
+        console.log(base64);
+      }, (error) => {
+        this.setState({
+          isLoaded: true,
+
+        });
+      }
+      );
   }
 
   render() {
-    return (
-      <div className="qrCode">
-        <canvas id="canvas" />
-        
-        <button onClick={this.generateQR} className="btn-primary btn-reserve btn-generate">
-          Generate
-     </button>
-
-
-      </div>
-    )
+    if (this.state.source === null) {
+      this.fetchQRCode();
+  
+    }
+      return (
+        <div className="qrCode">
+          <img src={this.state.source} />
+        </div>)
+    
+    
+      
+    
+    
+    
   }
 }
