@@ -179,7 +179,7 @@ h6 {
   justify-content: center;
 }
 .roomsHero {
-  background-image: url("./images/room-2.jpeg");
+  background-image: url("./images/roomsBackground.jpg");
   min-height: 60vh;
 }
 /* End of Hero */
