@@ -4,6 +4,8 @@ import { FaAlignRight } from 'react-icons/fa'
 import { Link } from 'react-router-dom'
 import Welcome from './Welcome'
 import { RoomContext } from '../context'
+import logo2_small from '../images/logo2_small.jpg'
+import logo2_small_2 from '../images/logo2_small_2.png'
 
 export default class Navbar extends Component {
     static contextType = RoomContext;
@@ -26,7 +28,7 @@ export default class Navbar extends Component {
 
                     <div className="nav-header">
                         <Link to="/">
-                            <img src={logo} alt="Room" />
+                            <img src={logo2_small_2} alt="Room" />
                         </Link>
 
                         <button type="button" className="nav-btn"
