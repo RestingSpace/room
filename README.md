@@ -1,6 +1,8 @@
 ## Design of The System
 <img src="https://github.com/RestingSpace/room/blob/master/demo/front_end_design.png">
 
+## Watch the Demo
+[![Watch the video](https://github.com/RestingSpace/room/blob/master/demo/video%20demo.png)](https://drive.google.com/file/d/10vl9sRRrJQ8VIjpsPG9gwYA7E8mhUsf6/view)
 
 ## Before you start
 npm install react-router-dom<br />
